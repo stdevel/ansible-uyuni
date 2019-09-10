@@ -1,0 +1,43 @@
+---
+- name: Install Uyuni and tools
+  zypper:
+    name: "{{ uyuni_packages }}"
+    state: present
+  vars:
+    uyuni_packages:
+    - patterns-uyuni_server
+    - spacewalk-utils
+    - spacecmd
+- name: Stage deploy configuration
+  template:
+    src: setup_env.sh.j2
+    dest: "/root/setup_env.sh"
+    mode: "0755"
+    owner: root
+    group: root
+- name: Initialize database
+  command: /usr/lib/susemanager/bin/mgr-setup -s
+  args:
+    creates: /root/.MANAGER_SETUP_COMPLETE
+- name: Wait for web server to come up
+  wait_for:
+    port: 80
+    delay: 20
+- name: Create initial organization and user
+  uri:
+    url: https://localhost/rhn/newlogin/CreateFirstUser.do
+    method: POST
+    validate_certs: false
+    body: "submitted=true&orgName={{ org_name }}&login={{ org_login }}&desiredpassword={{ org_password }}&desiredpasswordConfirm={{ org_password }}&email={{ org_mail }}&firstNames={{ org_first_name }}&lastName={{ org_last_name }}"
+    body_format: "form-urlencoded"
+    status_code:
+      - 201
+      - 302
+    creates: /root/.MANAGER_INITIALIZATION_COMPLETE
+- name: Create initialization file
+  file:
+    path: /root/.MANAGER_INITIALIZATION_COMPLETE
+    owner: root
+    group: root
+    mode: '0644'
+    state: touch

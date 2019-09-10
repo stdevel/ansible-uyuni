@@ -1,0 +1,38 @@
+---
+# defaults file for ansible-uyuni
+
+# storage configuration
+vg_uyuni: vg_uyuni
+pv_uyuni: /dev/sdb
+lv_spacewalk: lv_spacewalk
+size_spacewalk: 10240
+fs_spacewalk: xfs
+lv_pgsql: lv_pgsql
+size_pgsql: 10240
+fs_pgsql: xfs
+
+# Uyuni configuration
+uyuni_mail: "root@localhost"
+uyuni_db_name: "uyuni"
+uyuni_db_user: "uyuni"
+uyuni_db_pass: "uyuni"
+cert_city: "Berlin"
+cert_country: "DE"
+cert_mail: "root@localhost"
+cert_o: "Berlin"
+cert_ou: "Berlin"
+cert_state: "Berlin"
+cert_pass: "uyuni"
+org_name: "Demo"
+org_login: "admin"
+org_password: "admin"
+org_mail: "root@localhost"
+org_first_name: "Anton"
+org_last_name: "Administrator"
+
+# additional settings
+use_uyuni_repo: true
+
+# TODO:
+# configure firewall
+# ensure fqdn?

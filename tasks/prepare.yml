@@ -1,0 +1,60 @@
+---
+- name: Update system
+  zypper:
+    name: "*"
+    state: latest
+- name: Install LVM and other core utilities
+  zypper:
+    name: "{{ core_packages }}"
+    state: present
+  vars:
+    core_packages:
+    - xfsprogs
+    - lvm2
+    - man
+
+
+
+# TODO: Create in a loop?
+- name: Create a volume group for Uyuni
+  lvg:
+    vg: "{{ vg_uyuni }}"
+    pvs: "{{ pv_uyuni }}"
+- name: Create a logical volume for Uyuni
+  lvol:
+    vg: "{{ vg_uyuni }}"
+    lv: "{{ lv_spacewalk }}"
+    size: "{{ size_spacewalk | int }}"
+- name: Create a filesystem for Uyuni
+  filesystem:
+    fstype: "{{ fs_spacewalk }}"
+    dev: "/dev/mapper/{{ vg_uyuni }}-{{ lv_spacewalk }}"
+- name: Create a mountpoint for Uyuni
+  mount:
+    path: /var/spacewalk
+    src: "/dev/mapper/{{ vg_uyuni }}-{{ lv_spacewalk }}"
+    fstype: "{{ fs_spacewalk }}"
+    opts: auto
+    state: mounted
+- name: Create a logical volume for PostgreSQL
+  lvol:
+    vg: "{{ vg_uyuni }}"
+    lv: "{{ lv_pgsql }}"
+    size: "{{ size_pgsql | int }}"
+- name: Create a filesystem for PostgreSQL
+  filesystem:
+    fstype: "{{ fs_pgsql }}"
+    dev: "/dev/mapper/{{ vg_uyuni }}-{{ lv_pgsql }}"
+- name: Create a mountpoint for PostgreSQL
+  mount:
+    path: /var/lib/pgsql
+    src: "/dev/mapper/{{ vg_uyuni }}-{{ lv_pgsql }}"
+    fstype: "{{ fs_pgsql }}"
+    opts: auto
+    state: mounted
+- name: Add Uyuni repository
+  zypper_repository:
+    repo: 'https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable/images/repo/Uyuni-Server-4.0-POOL-x86_64-Media1/'
+    name: uyuni-server-stable
+    auto_import_keys: yes
+  when: use_uyuni_repo | bool
