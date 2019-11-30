@@ -53,7 +53,7 @@ Refer to the following example:
 ```
     - hosts: servers
       roles:
-         - ansible-uyuni
+         - stdevel.ansible_uyuni
 ```
 
 Set variables if required, e.g.:
@@ -62,7 +62,7 @@ Set variables if required, e.g.:
 - hosts: uyuni.giertz.loc
   remote_user: root
   roles:
-    - { role: ansible-uyuni, pv_uyuni: '/dev/vdb' }
+    - { role: stdevel.ansible_uyuni, pv_uyuni: '/dev/vdb' }
 ```
 
 License
