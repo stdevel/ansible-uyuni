@@ -13,6 +13,7 @@ Role Variables
 
 | Variable | Default | Description |
 | -------- | ------- | ----------- |
+| `use_lvm` | `true` | Use LVM to create application volumes |
 | `vg_uyuni` | `uyuni` | LVM volume group to create for Docker data |
 | `pv_uyuni` | `/dev/sdb` | Disk to use for LVM |
 | `lv_spacewalk` | `lv_spacewalk` | Logical volume to create for Spacewalk data |

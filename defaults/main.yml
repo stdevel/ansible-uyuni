@@ -2,6 +2,7 @@
 # defaults file for ansible-uyuni
 
 # storage configuration
+use_lvm: true
 vg_uyuni: vg_uyuni
 pv_uyuni: /dev/sdb
 lv_spacewalk: lv_spacewalk
