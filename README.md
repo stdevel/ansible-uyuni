@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/stdevel/ansible-uyuni.svg?branch=master)](https://travis-ci.org/stdevel/ansible-uyuni)
+
 ansible-uyuni
 =============
 
