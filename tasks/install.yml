@@ -5,9 +5,9 @@
     state: present
   vars:
     uyuni_packages:
-    - patterns-uyuni_server
-    - spacewalk-utils
-    - spacecmd
+      - patterns-uyuni_server
+      - spacewalk-utils
+      - spacecmd
 - name: Stage deploy configuration
   template:
     src: setup_env.sh.j2
