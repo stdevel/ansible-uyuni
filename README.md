@@ -69,7 +69,7 @@ Set variables if required, e.g.:
 License
 -------
 
-BSD
+Apache 2.0
 
 Author Information
 ------------------
