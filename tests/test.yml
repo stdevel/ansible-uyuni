@@ -2,4 +2,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - ansible-uyuni
+    - { role: ansible-uyuni, use_lvm: false }
