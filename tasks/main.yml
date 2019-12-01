@@ -2,7 +2,9 @@
 # tasks file for ansible-uyuni
 
 - include: prepare.yml
+  become: true
   tags: prepare
 
 - include: install.yml
+  become: true
   tags: install
