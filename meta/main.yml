@@ -9,11 +9,7 @@ galaxy_info:
 
   platforms:
     - name: opensuse
-      versions:
-        - 15.1
     - name: sles
-      versions:
-        - 15SP1
 
   galaxy_tags:
     - uyuni
