@@ -3,6 +3,7 @@
   zypper:
     name: "{{ uyuni_packages }}"
     state: present
+  become: true
   vars:
     uyuni_packages:
       - patterns-uyuni_server
@@ -15,10 +16,12 @@
     mode: "0755"
     owner: root
     group: root
+  become: true
 - name: Initialize database
   command: /usr/lib/susemanager/bin/mgr-setup -s
   args:
     creates: /root/.MANAGER_SETUP_COMPLETE
+  become: true
 - name: Wait for web server to come up
   wait_for:
     port: 80
@@ -34,6 +37,8 @@
       - 201
       - 302
     creates: /root/.MANAGER_INITIALIZATION_COMPLETE
+  become: true
+  register: org_created
 - name: Create initialization file
   file:
     path: /root/.MANAGER_INITIALIZATION_COMPLETE
@@ -41,3 +46,5 @@
     group: root
     mode: '0644'
     state: touch
+  become: true
+  when: org_created|bool
