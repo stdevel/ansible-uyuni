@@ -9,14 +9,10 @@
     name: "{{ core_packages }}"
     state: present
   become: true
-  vars:
-    core_packages:
-      - xfsprogs
-      - lvm2
-      - man
+
 - name: Add Uyuni repository
   zypper_repository:
-    repo: 'https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable/images/repo/Uyuni-Server-4.0-POOL-x86_64-Media1/'
+    repo: "{{ uyuni_repo }}"
     name: uyuni-server-stable
     auto_import_keys: true
   become: true
