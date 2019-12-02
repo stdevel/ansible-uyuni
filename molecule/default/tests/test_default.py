@@ -10,8 +10,9 @@ TESTINFRA_HOSTS = testinfra.utils.ansible_runner.AnsibleRunner(
 
 def test_packages(host):
     """
-    get variables from file
+    check if packages are installed
     """
+    # get variables from file
     ansible_vars = host.ansible("include_vars", "file=main.yml")
     print("***")
     print(ansible_vars)
@@ -39,8 +40,9 @@ def test_ports_listen(host):
 
 def test_org(host):
     """
-    get variables from file
+    check if organization is accessible
     """
+    # get variables from file
     ansible_vars = host.ansible("include_vars", "file=main.yml")
     # check if organization exists
     cmd_org = host.run(
