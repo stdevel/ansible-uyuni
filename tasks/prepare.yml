@@ -24,7 +24,7 @@
     pvs: "{{ pv_uyuni }}"
   become: true
   when: use_lvm | bool
-- name: Createl logical volumes, file systems and mount points
+- name: Create logical volumes, file systems and mount points
   block:
     - name: Create logical volumes
       lvol:
