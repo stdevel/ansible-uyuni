@@ -8,14 +8,25 @@ TESTINFRA_HOSTS = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']
 ).get_hosts('all')
 
+def test_lvm(host):
+    """
+    test if storage was set-up correctly
+    """
+    # get variables from file
+    ansible_vars = host.ansible("include_vars", "file=main.yml")
+    if ansible_vars["ansible_facts"]["use_lvm"]:
+        # check file systems
+        for filesystem in ansible_vars["ansible_facts"]["filesystems"]:
+            assert host.mount_point(filesystem.mountpoint).exists
+            assert host.mount_point(filesystem.mountpoint).filesystem == filesystem.type
+
 def test_packages(host):
     """
-    get variables from file
+    check if packages are installed
     """
+    # get variables from file
     ansible_vars = host.ansible("include_vars", "file=main.yml")
-    print("***")
-    print(ansible_vars)
-    # depend + uyuni
+    # check dependencies and Uyuni packages
     for pkg in ansible_vars["ansible_facts"]["core_packages"] + \
         ansible_vars["ansible_facts"]["uyuni_packages"]:
         assert host.package(pkg).is_installed
@@ -25,10 +36,10 @@ def test_setup_complete(host):
     check if installation files exist
     """
     with host.sudo():
-        for file in [
+        for state_file in [
                 "/root/.MANAGER_SETUP_COMPLETE",
                 "/root/.MANAGER_INITIALIZATION_COMPLETE"]:
-            assert host.file(file).exists
+            assert host.file(state_file).exists
 
 def test_ports_listen(host):
     """
@@ -39,8 +50,9 @@ def test_ports_listen(host):
 
 def test_org(host):
     """
-    get variables from file
+    check if organization is accessible
     """
+    # get variables from file
     ansible_vars = host.ansible("include_vars", "file=main.yml")
     # check if organization exists
     cmd_org = host.run(

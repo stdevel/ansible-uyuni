@@ -35,7 +35,7 @@
       filesystem:
         fstype: "{{ item.type }}"
         dev: "/dev/mapper/{{ vg_uyuni }}-{{ item.name }}"
-    - name: Create mount points:
+    - name: Create mount points
       mount:
         path: "{{ item.mountpoint }}"
         src: "/dev/mapper/{{ vg_uyuni }}-{{ item.name }}"
