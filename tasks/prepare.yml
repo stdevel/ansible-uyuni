@@ -31,10 +31,12 @@
         vg: "{{ vg_uyuni }}"
         lv: "{{ item.name }}"
         size: "{{ item.size }}"
+      with_items: "{{ filesystems }}"
     - name: Create file systems
       filesystem:
         fstype: "{{ item.type }}"
         dev: "/dev/mapper/{{ vg_uyuni }}-{{ item.name }}"
+      with_items: "{{ filesystems }}"
     - name: Create mount points
       mount:
         path: "{{ item.mountpoint }}"
@@ -42,6 +44,6 @@
         fstype: "{{ item.type }}"
         opts: auto
         state: mounted
+      with_items: "{{ filesystems }}"
   become: true
   when: use_lvm | bool
-  with_items: "{{ filesystems }}"
