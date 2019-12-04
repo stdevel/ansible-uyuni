@@ -52,12 +52,12 @@
         name: firewalld
         state: started
         enabled: true
+    # Yes, we're using command as the firewalld
+    # ressource is only available on RPM-based systems :(
+    - name: Set default zone
+      command: "firewall-cmd --set-default-zone={{ default_zone }}"
     - name: Enable services
-      firewalld:
-        service: "{{ item }}"
-        state: enabled
-        zone: "{{ default_zone }}"
-        permanent: true
+      command: "firewall-cmd --zone={{ default_zone }} --add-service={{ item }} --permanent"
       with_items: "{{ firewall_services }}"
     - name: Restart firewall
       service:

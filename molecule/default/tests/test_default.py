@@ -48,6 +48,18 @@ def test_ports_listen(host):
     for port in [22, 80, 443, 4505, 4506]:
         assert host.socket("tcp://0.0.0.0:%s" % port).is_listening
 
+def test_firewall(host):
+    """
+    check if firewall is configured properly
+    """
+    # get variables from file
+    ansible_vars = host.ansible("include_vars", "file=main.yml")
+    # check if services are enabled
+    with host.sudo():
+        cmd_fw = host.run("firewall-cmd --list-services")
+        for srv in ansible_vars["ansible_facts"]["firewall_services"]:
+            assert srv in cmd_fw.stdout.strip()
+
 def test_org(host):
     """
     check if organization is accessible
