@@ -82,7 +82,7 @@ def test_errata(host):
     ansible_vars = host.ansible("include_vars", "file=main.yml")
     if ansible_vars["ansible_facts"]["setup_cefs"]:
         for pkg in ansible_vars["ansible_facts"]["cefs_packages"]:
-           assert host.package(pkg).is_installed
+            assert host.package(pkg).is_installed
     # TODO: check errata script
     # TODO: check cronjob
     # TODO: check DEFS

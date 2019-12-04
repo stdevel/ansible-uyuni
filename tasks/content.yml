@@ -6,5 +6,6 @@
   become: true
   when: setup_cefs or setup_defs
 
-  # TODO: Download errata-import scripts
-  # TODO: Create script and cronjob (additional parameters such as channels to include?)
+# TODO: Download errata-import scripts
+# TODO: Create script and cronjob (additional parameters such as
+#       channels to include?)
