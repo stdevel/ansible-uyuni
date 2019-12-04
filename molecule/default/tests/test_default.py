@@ -73,3 +73,16 @@ def test_org(host):
         ansible_vars["ansible_facts"]["org_password"]
         )
     assert cmd_org.stdout.strip() == ansible_vars["ansible_facts"]["org_name"]
+
+def test_errata(host):
+    """
+    check if CEFS/DEFS are installed properly
+    """
+    # get variables from file
+    ansible_vars = host.ansible("include_vars", "file=main.yml")
+    if ansible_vars["ansible_facts"]["setup_cefs"]:
+        for pkg in ansible_vars["ansible_facts"]["cefs_packages"]:
+           assert host.package(pkg).is_installed
+    # TODO: check errata script
+    # TODO: check cronjob
+    # TODO: check DEFS

@@ -6,3 +6,6 @@
 
 - include_tasks: install.yml
   tags: install
+
+- include_tasks: content.yml
+  tags: content
