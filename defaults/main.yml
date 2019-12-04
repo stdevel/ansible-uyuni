@@ -4,6 +4,7 @@ core_packages:
   - xfsprogs
   - lvm2
   - man
+  - firewalld
 uyuni_repo: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable/images/repo/Uyuni-Server-4.0-POOL-x86_64-Media1/"
 uyuni_packages:
   - patterns-uyuni_server
@@ -46,6 +47,11 @@ org_last_name: "Administrator"
 # additional settings
 use_uyuni_repo: true
 
-# TODO:
-# configure firewall
-# ensure fqdn?
+# firewall settings
+config_firewall: true
+default_zone: internal
+firewall_interfaces:
+  - name: eth0
+    zone: internal
+firewall_services:
+  - suse-manager-server

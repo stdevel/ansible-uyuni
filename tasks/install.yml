@@ -44,3 +44,23 @@
     state: touch
   become: true
   when: org_created.status is defined and org_created.status in [201, 302]
+
+- name: Enable and configure firewall
+  block:
+    - name: Enable and start firewall
+      service:
+        name: firewalld
+        state: started
+        enabled: true
+    - name: Enable services
+      firewalld:
+        service: "{{ item }}"
+        state: enabled
+        zone: "{{ default_zone }}"
+        permanent: true
+      with_items: "{{ firewall_services }}"
+    - name: Restart firewall
+      service:
+        name: firewalld
+        state: restarted
+  become: true
