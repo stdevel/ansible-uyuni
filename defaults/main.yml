@@ -50,8 +50,5 @@ use_uyuni_repo: true
 # firewall settings
 config_firewall: true
 default_zone: internal
-firewall_interfaces:
-  - name: eth0
-    zone: internal
 firewall_services:
   - suse-manager-server
