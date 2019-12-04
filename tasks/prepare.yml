@@ -4,7 +4,7 @@
     name: "*"
     state: latest
   become: true
-- name: Install LVM and other core utilities
+- name: Install core utilities
   zypper:
     name: "{{ core_packages }}"
     state: present

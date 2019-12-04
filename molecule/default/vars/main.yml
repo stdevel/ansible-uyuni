@@ -28,3 +28,9 @@ filesystems:
 org_name: "Demo"
 org_login: "admin"
 org_password: "admin"
+
+# firewall settings
+config_firewall: true
+default_zone: internal
+firewall_services:
+  - suse-manager-server

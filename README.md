@@ -42,6 +42,9 @@ Role Variables
 | `org_first_name`| `Anton` | Organization administrator first name |
 | `org_last_name`| `Administrator` | Organization administrator last name |
 | `use_uyuni_repo` | `true` | Flag whether official Uyuni repository should be added |
+| `config_firewall` | `true` | Flag whether firewalld should be configured |
+| `default_zone` | `internal` | firewalld default zone to set |
+| `firewall_services` | `["suse-amanger-server"]` | Firewall services to enable |
 
 Dependencies
 ------------
