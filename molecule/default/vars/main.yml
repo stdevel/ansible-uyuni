@@ -10,6 +10,20 @@ uyuni_packages:
   - spacewalk-utils
   - spacecmd
 
+# storage configuration
+use_lvm: true
+vg_uyuni: vg_uyuni
+pv_uyuni: /dev/sdb
+filesystems:
+  - name: lv_spacewalk
+    type: xfs
+    mountpoint: /var/spacewalk
+    size: 10240
+  - name: lv_pgsql
+    type: xfs
+    mountpoint: /var/lib/pgsql
+    size: 10240
+
 # Uyuni configuration
 org_name: "Demo"
 org_login: "admin"

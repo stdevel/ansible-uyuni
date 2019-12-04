@@ -14,12 +14,15 @@ uyuni_packages:
 use_lvm: true
 vg_uyuni: vg_uyuni
 pv_uyuni: /dev/sdb
-lv_spacewalk: lv_spacewalk
-size_spacewalk: 10240
-fs_spacewalk: xfs
-lv_pgsql: lv_pgsql
-size_pgsql: 10240
-fs_pgsql: xfs
+filesystems:
+  - name: lv_spacewalk
+    type: xfs
+    mountpoint: /var/spacewalk
+    size: 10240
+  - name: lv_pgsql
+    type: xfs
+    mountpoint: /var/lib/pgsql
+    size: 10240
 
 # Uyuni configuration
 uyuni_mail: "root@localhost"

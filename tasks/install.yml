@@ -43,4 +43,4 @@
     mode: '0644'
     state: touch
   become: true
-  when: org_created|bool
+  when: org_created.status is defined and org_created.status in [201, 302]

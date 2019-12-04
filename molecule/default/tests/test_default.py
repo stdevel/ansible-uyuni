@@ -8,15 +8,25 @@ TESTINFRA_HOSTS = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']
 ).get_hosts('all')
 
+def test_lvm(host):
+    """
+    test if storage was set-up correctly
+    """
+    # get variables from file
+    ansible_vars = host.ansible("include_vars", "file=main.yml")
+    if ansible_vars["ansible_facts"]["use_lvm"]:
+        # check file systems
+        for fs in ansible_vars["ansible_facts"]["filesystems"]:
+            assert host.mount_point(fs["mountpoint"]).exists
+            assert host.mount_point(fs["mountpoint"]).filesystem == fs["type"]
+
 def test_packages(host):
     """
     check if packages are installed
     """
     # get variables from file
     ansible_vars = host.ansible("include_vars", "file=main.yml")
-    print("***")
-    print(ansible_vars)
-    # depend + uyuni
+    # check dependencies and Uyuni packages
     for pkg in ansible_vars["ansible_facts"]["core_packages"] + \
         ansible_vars["ansible_facts"]["uyuni_packages"]:
         assert host.package(pkg).is_installed
@@ -26,10 +36,10 @@ def test_setup_complete(host):
     check if installation files exist
     """
     with host.sudo():
-        for file in [
+        for state_file in [
                 "/root/.MANAGER_SETUP_COMPLETE",
                 "/root/.MANAGER_INITIALIZATION_COMPLETE"]:
-            assert host.file(file).exists
+            assert host.file(state_file).exists
 
 def test_ports_listen(host):
     """
