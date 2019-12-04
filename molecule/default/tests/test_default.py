@@ -16,9 +16,9 @@ def test_lvm(host):
     ansible_vars = host.ansible("include_vars", "file=main.yml")
     if ansible_vars["ansible_facts"]["use_lvm"]:
         # check file systems
-        for fs in ansible_vars["ansible_facts"]["filesystems"]:
-            assert host.mount_point(fs["mountpoint"]).exists
-            assert host.mount_point(fs["mountpoint"]).filesystem == fs["type"]
+        for filesys in ansible_vars["ansible_facts"]["filesystems"]:
+            assert host.mount_point(filesys["mountpoint"]).exists
+            assert host.mount_point(filesys["mountpoint"]).filesystem == filesys["type"]
 
 def test_packages(host):
     """
