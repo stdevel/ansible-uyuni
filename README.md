@@ -44,7 +44,12 @@ Role Variables
 | `use_uyuni_repo` | `true` | Flag whether official Uyuni repository should be added |
 | `config_firewall` | `true` | Flag whether firewalld should be configured |
 | `default_zone` | `internal` | firewalld default zone to set |
-| `firewall_services` | `["suse-amanger-server"]` | Firewall services to enable |
+| `firewall_services` | `["suse-manager-server"]` | Firewall services to enable |
+| `setup_cefs` | `false` | Flag whether errata for CentOS should be generated via [CEFS](https://cefs.steve-meier.de/) |
+| `setup_cefs_cronjob` | `false` | Flag whether CEFS cronjob should be generated |
+| `setup_defs` | `false` | Flag whether errata for Debian should be generated via [DEFS](https://defs.steve-meier.de/) |
+| `setup_defs_cronjob` | `false` | Flag whether DEFS cronjob should be generated |
+| `cefs_path` | `/opt/errata-import` | Path to install CEFS and the wrapper script to |
 
 Dependencies
 ------------
