@@ -6,6 +6,42 @@
   become: true
   when: setup_cefs or setup_defs
 
-# TODO: Download errata-import scripts
-# TODO: Create script and cronjob (additional parameters such as
-#       channels to include?)
+- name: Install errata-import
+  block:
+    - name: Create folder
+      file:
+        path: "{{ cefs_path }}"
+        state: directory
+    - name: Download errata-import
+      get_url:
+        url: https://github.com/stevemeier/cefs/raw/master/errata-import.pl
+        dest: "{{ cefs_path }}/errata-import.pl"
+        mode: "0755"
+    - name: Install wrapper script
+      template:
+        src: errata-import.sh.j2
+        dest: "{{ cefs_path }}/wrapper.sh"
+        mode: "0755"
+        owner: root
+        group: root
+  become: true
+  when: setup_cefs or setup_defs
+
+- name: Install CEFS cronjob
+  cron:
+    name: "Import CentOS errata"
+    job: "{{ cefs_path }}/wrapper.sh cefs"
+    user: root
+    cron_file: "errata-cefs"
+    special_time: daily
+  when: setup_cefs_cronjob
+  become: true
+- name: Install DEFS cronjob
+  cron:
+    name: "Import Debian errata"
+    job: "{{ cefs_path }}/wrapper.sh defs"
+    user: root
+    cron_file: "errata-defs"
+    special_time: daily
+  when: setup_defs_cronjob
+  become: true

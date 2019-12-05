@@ -56,8 +56,10 @@ firewall_services:
 # content settings
 setup_cefs: false
 setup_cefs_cronjob: false
+cefs_path: "/opt/errata-import"
 setup_defs: false
 setup_defs_cronjob: false
 cefs_packages:
   - perl
   - perl-Text-Unidecode
+  - cron

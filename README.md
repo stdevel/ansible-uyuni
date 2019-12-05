@@ -49,6 +49,7 @@ Role Variables
 | `setup_cefs_cronjob` | `false` | Flag whether CEFS cronjob should be generated |
 | `setup_defs` | `false` | Flag whether errata for Debian should be generated via [DEFS](https://defs.steve-meier.de/) |
 | `setup_defs_cronjob` | `false` | Flag whether DEFS cronjob should be generated |
+| `cefs_path` | `/opt/errata-import` | Path to install CEFS and the wrapper script to |
 
 Dependencies
 ------------
