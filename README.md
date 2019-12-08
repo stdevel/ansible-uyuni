@@ -54,7 +54,7 @@ Role Variables
 
 When supplying channels, ensure passing an array with dicts like this:
 ```
-[{"name": "centos7", "arch": "x86_&4"}, {"name": "centos7-updates", "arch": "x86_64"}]
+[{"name": "centos7", "arch": "x86_64"}, {"name": "centos7-updates", "arch": "x86_64"}]
 ```
 
 For available channels and architectures, see the ``spacewalk-common-channels.ini`` installed by the ``spacewalk-utils`` package. There is also [an online version](https://github.com/spacewalkproject/spacewalk/blob/master/utils/spacewalk-common-channels.ini) on GitHub.
