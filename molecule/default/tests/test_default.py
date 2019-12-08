@@ -93,3 +93,19 @@ def test_errata(host):
             assert host.file("/etc/cron.d/errata-cefs").exists
         if ansible_vars["ansible_facts"]["setup_defs_cronjob"]:
             assert host.file("/etc/cron.d/errata-defs").exists
+
+def test_channels(host):
+    """
+    check if supplied channels were created
+    """
+    # get variables from file
+    ansible_vars = host.ansible("include_vars", "file=main.yml")
+    if len(ansible_vars["ansible_facts"]["channels"]) > 0:
+        # get all channels
+        with host.sudo():
+            cmd_channels = host.run(
+                "spacewalk-repo-sync -l"
+            )
+        for channel in ansible_vars["ansible_facts"]["channels"]:
+            # check channel
+            assert channel in cmd_channels

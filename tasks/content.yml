@@ -45,3 +45,15 @@
     special_time: daily
   when: setup_defs_cronjob
   become: true
+
+- name: Create software channels
+  block:
+  - name: Install spacewalk-utils
+    zypper:
+      name: spacewalk-utils
+      state: present
+  - name: Create channels
+    command: spacewalk-common-channels -u {{ org_login }} -p {{ org_password }} -a {{ item.arch }} item.channel
+    with_items: "{{ channels }}"
+  when: channels|length > 0
+  become: true
