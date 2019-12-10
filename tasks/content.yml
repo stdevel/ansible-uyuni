@@ -53,7 +53,7 @@
       name: spacewalk-utils
       state: present
   - name: Create channels
-    command: spacewalk-common-channels -u {{ org_login }} -p {{ org_password }} -a {{ item.arch }} item.channel
+    command: spacewalk-common-channels -u {{ org_login }} -p {{ org_password }} -a {{ item.arch }} {{ item.name }}
     with_items: "{{ channels }}"
   when: channels|length > 0
   become: true
