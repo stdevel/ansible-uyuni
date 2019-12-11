@@ -50,5 +50,3 @@ channels:
     arch: x86_64
   - name: centos7-updates
     arch: x86_64
-  - name: epel7
-    arch: x86_64

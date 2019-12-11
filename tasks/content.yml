@@ -48,12 +48,13 @@
 
 - name: Create software channels
   block:
-  - name: Install spacewalk-utils
-    zypper:
-      name: spacewalk-utils
-      state: present
-  - name: Create channels
-    command: spacewalk-common-channels -u {{ org_login }} -p {{ org_password }} -a {{ item.arch }} {{ item.name }}
-    with_items: "{{ channels }}"
+    - name: Install spacewalk-utils
+      zypper:
+        name: spacewalk-utils
+        state: present
+      register: channels
+    - name: Create channels
+      command: spacewalk-common-channels -u {{ org_login }} -p {{ org_password }} -a {{ item.arch }} {{ item.name }}
+      with_items: "{{ channels }}"
   when: channels|length > 0
   become: true
