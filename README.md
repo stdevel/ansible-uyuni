@@ -81,7 +81,14 @@ Set variables if required, e.g.:
 - hosts: uyuni.giertz.loc
   remote_user: root
   roles:
-    - { role: stdevel.ansible_uyuni, pv_uyuni: '/dev/vdb' }
+    - role: ansible-uyuni
+      setup_cefs: true
+      setup_cefs_cronjob: true
+      setup_defs: true
+      setup_defs_cronjob: true
+      channels:
+        - {"name": "centos7", "arch": "x86_64"}
+        - {"name": "centos7-updates", "arch": "x86_64"}
 ```
 
 License
