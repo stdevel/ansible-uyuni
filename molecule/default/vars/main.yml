@@ -45,3 +45,8 @@ cefs_packages:
   - perl
   - perl-Text-Unidecode
   - cron
+channels:
+  - name: centos7
+    arch: x86_64
+  - name: centos7-updates
+    arch: x86_64
