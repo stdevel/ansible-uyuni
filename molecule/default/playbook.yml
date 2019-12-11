@@ -2,4 +2,4 @@
 - name: Converge
   hosts: all
   roles:
-    - {role: ansible-uyuni, setup_cefs: true, setup_cefs_cronjob: true, setup_defs: true, setup_defs_cronjob: true, channels: [{"name": "centos7", "arch": "x86_64"}]}
+    - {role: ansible-uyuni, setup_cefs: true, setup_cefs_cronjob: true, setup_defs: true, setup_defs_cronjob: true, channels: [{"name": "centos7", "arch": "x86_64"}, {"name": "centos7-extras", "arch": "x86_64"}]}

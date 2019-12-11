@@ -3,6 +3,7 @@ Molecule unit tests
 """
 import os
 import testinfra.utils.ansible_runner
+import configparser
 
 TESTINFRA_HOSTS = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']
@@ -100,12 +101,49 @@ def test_channels(host):
     """
     # get variables from file
     ansible_vars = host.ansible("include_vars", "file=main.yml")
+    # get spacewalk-common-channels definitions from client
+    with host.sudo():
+        definition_file = host.file("/etc/rhn/spacewalk-common-channels.ini").content_string
+    definitions = configparser.RawConfigParser(allow_no_value=True)
+    #definitions.readfp(io.StringIO(definition_file))
+    definitions.read_string(definition_file)
+    print "*** DEFINITIONS"
+    print definitions
+    print "*** END"
+
+    # check channels if defined
     if len(ansible_vars["ansible_facts"]["channels"]) > 0:
-        # get all channels
+        # get all repositories
         with host.sudo():
             cmd_channels = host.run(
-                "spacewalk-repo-sync -l"
+                "spacecmd -q -u %s -p %s repo_list",
+                ansible_vars["ansible_facts"]["org_login"],
+                ansible_vars["ansible_facts"]["org_password"]            
             )
         for channel in ansible_vars["ansible_facts"]["channels"]:
             # check channel
-            assert channel in cmd_channels
+            #assert channel["name"] in cmd_channels.stdout.strip().split("\n")
+            #print "***"
+            #print definitions[channel["name"]]["name"]
+
+            # set base name if exists
+            #if definitions[channel["name"]]["base_channels"] is defined:
+            if "name" in definitions[channel["name"]]:
+                base_name = definitions[channel["name"]]["base_channels"].replace('%s(arch)s', channel["arch"])
+                print "*** BASE NAME"
+                print base_name
+                repo_name = definitions[channel["name"]]["name"].replace('%s(base_channel)s', base_name)
+            else:
+                repo_name = definitions[channel["name"]]
+
+            print "*** REPO NAME"
+            print repo_name
+
+            print "*** CMD CHANNELS"
+            print cmd_channels.stdout.strip().split("\n")
+            print "*** END"
+            print "*** CHECK ARGUMENT"
+            print "External - %s", definitions[channel["name"]]["name"]
+            print "*** END"
+            #assert "External - %s", definitions[channel["name"]]["name"] in cmd_channels.stdout.strip().split("\n")
+            assert "External - %s", definitions[channel["name"]]["name"] in ["k"]
