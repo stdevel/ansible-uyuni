@@ -4,7 +4,7 @@ core_packages:
   - xfsprogs
   - lvm2
   - man
-uyuni_repo: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable/images/repo/Uyuni-Server-4.0-POOL-x86_64-Media1/"
+uyuni_repo: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable/images/repo/Uyuni-Server-POOL-x86_64-Media1/"
 uyuni_packages:
   - patterns-uyuni_server
   - spacewalk-utils
