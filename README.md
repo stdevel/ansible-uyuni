@@ -3,18 +3,21 @@
 ansible-uyuni
 =============
 
-This role prepares, installs and configures [Uyuni](https://uyuni-project.org).
+This role prepares, installs and configures [Uyuni](https://uyuni-project.org) and [SUSE Manager](https://www.suse.com/products/suse-manager/).
 
 Requirements
 ------------
 
-The system needs access to the internet. Also, you will need an openSUSE Leap 15.1 installation.
+The system needs access to the internet. Also, you will need an openSUSE Leap or SUSE Linux Enterprise Server 15.1 installation.
 
 Role Variables
 --------------
 
 | Variable | Default | Description |
 | -------- | ------- | ----------- |
+| `scc_reg_code` | - | [https://scc.suse.com](SUSE Customer Center) registration code (*received after trial registration or purchase*) |
+| `scc_mail` | - | SUSE Customer Center mail address |
+| `sles_modules` | (*Modules required for SUSE Manager 4.x*) | Modules to enable before installation |
 | `use_lvm` | `true` | Use LVM to create application volumes |
 | `vg_uyuni` | `uyuni` | LVM volume group to create for Docker data |
 | `pv_uyuni` | `/dev/sdb` | Disk to use for LVM |
@@ -89,6 +92,15 @@ Set variables if required, e.g.:
       channels:
         - {"name": "centos7", "arch": "x86_64"}
         - {"name": "centos7-updates", "arch": "x86_64"}
+```
+
+Don't forget setting SUSE-related variables when deploying SUSE Manager:
+```
+    - hosts: servers
+      roles:
+        - role: stdevel.ansible_uyuni
+          scc_reg_code: DERP1337LULZ
+          scc_mail: bla@foo.bar
 ```
 
 License

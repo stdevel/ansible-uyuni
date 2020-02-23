@@ -12,7 +12,9 @@ galaxy_info:
     - name: sles
 
   galaxy_tags:
-    - uyuni
     - systemsmanagement
+    - uyuni
+    - suse
+    - manager
 
 dependencies: []
