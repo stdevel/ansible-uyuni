@@ -9,6 +9,7 @@ TESTINFRA_HOSTS = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']
 ).get_hosts('all')
 
+
 def test_lvm(host):
     """
     test if storage was set-up correctly
@@ -19,7 +20,10 @@ def test_lvm(host):
         # check file systems
         for filesys in ansible_vars["ansible_facts"]["filesystems"]:
             assert host.mount_point(filesys["mountpoint"]).exists
-            assert host.mount_point(filesys["mountpoint"]).filesystem == filesys["type"]
+            assert host.mount_point(
+                filesys["mountpoint"]
+                ).filesystem == filesys["type"]
+
 
 def test_packages(host):
     """
@@ -29,8 +33,9 @@ def test_packages(host):
     ansible_vars = host.ansible("include_vars", "file=main.yml")
     # check dependencies and Uyuni packages
     for pkg in ansible_vars["ansible_facts"]["core_packages"] + \
-        ansible_vars["ansible_facts"]["uyuni_packages"]:
+            ansible_vars["ansible_facts"]["uyuni_packages"]:
         assert host.package(pkg).is_installed
+
 
 def test_setup_complete(host):
     """
@@ -42,12 +47,14 @@ def test_setup_complete(host):
                 "/root/.MANAGER_INITIALIZATION_COMPLETE"]:
             assert host.file(state_file).exists
 
+
 def test_ports_listen(host):
     """
     check if ports are listening
     """
     for port in [22, 80, 443, 4505, 4506]:
         assert host.socket("tcp://0.0.0.0:%s" % port).is_listening
+
 
 def test_firewall(host):
     """
@@ -60,6 +67,7 @@ def test_firewall(host):
         cmd_fw = host.run("firewall-cmd --list-services")
         for srv in ansible_vars["ansible_facts"]["firewall_services"]:
             assert srv in cmd_fw.stdout.strip()
+
 
 def test_org(host):
     """
@@ -74,6 +82,7 @@ def test_org(host):
         ansible_vars["ansible_facts"]["org_password"]
         )
     assert cmd_org.stdout.strip() == ansible_vars["ansible_facts"]["org_name"]
+
 
 def test_errata(host):
     """
@@ -95,6 +104,7 @@ def test_errata(host):
         if ansible_vars["ansible_facts"]["setup_defs_cronjob"]:
             assert host.file("/etc/cron.d/errata-defs").exists
 
+
 def test_channels(host):
     """
     check if supplied channels were created
@@ -103,7 +113,9 @@ def test_channels(host):
     ansible_vars = host.ansible("include_vars", "file=main.yml")
     # get spacewalk-common-channels definitions from client
     with host.sudo():
-        definition_file = host.file("/etc/rhn/spacewalk-common-channels.ini").content_string
+        definition_file = host.file(
+            "/etc/rhn/spacewalk-common-channels.ini"
+            ).content_string
     definitions = configparser.RawConfigParser(allow_no_value=True)
     definitions.read_string(definition_file)
 
@@ -119,6 +131,8 @@ def test_channels(host):
         for channel in ansible_vars["ansible_facts"]["channels"]:
             # get repository name (it ain't nice, but it's honest work)
             repo_name = definitions[channel["name"]]["name"]
-            repo_name = "External - %s" % repo_name.replace("%(arch)s", channel["arch"])
+            repo_name = "External - %s" % repo_name.replace(
+                "%(arch)s", channel["arch"]
+                )
             # ensure that repository exists
             assert repo_name in cmd_channels.stdout.strip().split("\n")
