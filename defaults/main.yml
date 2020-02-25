@@ -10,6 +10,12 @@ uyuni_packages:
   - patterns-uyuni_server
   - spacewalk-utils
   - spacecmd
+sles_modules:
+  - sle-module-basesystem/15.1/x86_64
+  - sle-module-python2/15.1/x86_64
+  - sle-module-suse-manager-server/4/x86_64
+  - sle-module-server-applications/15.1/x86_64
+  - sle-module-web-scripting/15.1/x86_64
 
 # storage configuration
 use_lvm: true
