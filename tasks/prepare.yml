@@ -10,14 +10,6 @@
     state: present
   become: true
 
-- name: Add Uyuni repository
-  zypper_repository:
-    repo: "{{ uyuni_repo }}"
-    name: uyuni-server-stable
-    auto_import_keys: true
-  become: true
-  when: use_uyuni_repo | bool
-
 - name: Create a volume group for Uyuni
   lvg:
     vg: "{{ vg_uyuni }}"
