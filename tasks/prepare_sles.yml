@@ -1,0 +1,17 @@
+---
+- name: Check if system is registered
+  command: SUSEConnect --status-text
+  changed_when: false
+  register: scc_registered
+  become: true
+
+- name: Register system
+  command: "SUSEConnect -r {{ scc_reg_code }} -e {{ scc_mail }}"
+  when: '"not registered" in scc_registered.stdout | lower'
+  become: true
+
+- name: Enable modules
+  command: "SUSEConnect -p {{ item }}"
+  loop: "{{ sles_modules }}"
+  # TODO: only if not already activated
+  become: true
