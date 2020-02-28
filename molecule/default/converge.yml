@@ -1,5 +1,5 @@
 ---
-- name: Converge
+- name: Converge machines
   hosts: all
   roles:
     - role: ansible-uyuni
