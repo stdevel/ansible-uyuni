@@ -12,8 +12,18 @@ lint: |
 platforms:
   - name: opensuse-leap151
     box: generic/opensuse15
+    cpus: 2
+    memory: 4096
+    provider_raw_config_args:
+      - "customize ['createhd', '--filename', 'uyuni01.vdi', '--size', 50 * 1024]"
+      - "customize ['storageattach', :id,  '--storagectl', 'IDE', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', 'uyuni01.vdi']"
   - name: sles-151
     box: hydra/sles15_minimal
+    cpus: 2
+    memory: 4096
+    provider_raw_config_args:
+      - "customize ['createhd', '--filename', 'uyuni02.vdi', '--size', 50 * 1024]"
+      - "customize ['storageattach', :id,  '--storagectl', 'IDE', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', 'uyuni02.vdi']"
 provisioner:
   name: ansible
   lint:
