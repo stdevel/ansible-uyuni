@@ -1,0 +1,15 @@
+---
+- name: Converge machines
+  hosts: all
+  roles:
+    - role: ansible-uyuni
+      scc_reg_code: <insert code here>
+      scc_mail: <insert SCC mail here>
+      config_firewall: false
+      setup_cefs: true
+      setup_cefs_cronjob: true
+      setup_defs: true
+      setup_defs_cronjob: true
+      channels:
+        - {"name": "centos7", "arch": "x86_64"}
+        - {"name": "centos7-updates", "arch": "x86_64"}

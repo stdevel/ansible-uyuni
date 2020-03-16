@@ -1,0 +1,23 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+lint: |
+    yamllint .
+    ansible-lint
+    flake8
+platforms:
+  - name: sles-151
+    box: sles151
+    cpus: 2
+    memory: 4096
+    provider_raw_config_args:
+      - "customize ['createhd', '--filename', 'uyuni02.vdi', '--size', 50 * 1024]"
+      - "customize ['storageattach', :id,  '--storagectl', 'SATA', '--port', 2, '--device', 0, '--type', 'hdd', '--medium', 'uyuni02.vdi']"
+provisioner:
+  name: ansible
+verifier:
+  name: testinfra

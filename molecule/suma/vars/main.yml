@@ -1,0 +1,52 @@
+---
+# packages
+core_packages:
+  - xfsprogs
+  - lvm2
+  - man
+uyuni_repo: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable/images/repo/Uyuni-Server-POOL-x86_64-Media1/"
+uyuni_packages:
+  - patterns-uyuni_server
+  - spacewalk-utils
+  - spacecmd
+
+# storage configuration
+use_lvm: true
+vg_uyuni: vg_uyuni
+pv_uyuni: /dev/sdb
+filesystems:
+  - name: lv_spacewalk
+    type: xfs
+    mountpoint: /var/spacewalk
+    size: 10240
+  - name: lv_pgsql
+    type: xfs
+    mountpoint: /var/lib/pgsql
+    size: 10240
+
+# Uyuni configuration
+org_name: "Demo"
+org_login: "admin"
+org_password: "admin"
+
+# firewall settings
+config_firewall: false
+default_zone: internal
+firewall_services:
+  - suse-manager-server
+
+# content settings
+setup_cefs: false
+setup_cefs_cronjob: false
+cefs_path: "/opt/errata-import"
+setup_defs: false
+setup_defs_cronjob: false
+cefs_packages:
+  - perl
+  - perl-Text-Unidecode
+  - cron
+channels:
+  - name: centos7
+    arch: x86_64
+  - name: centos7-updates
+    arch: x86_64
