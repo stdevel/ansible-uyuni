@@ -15,7 +15,7 @@ Role Variables
 
 | Variable | Default | Description |
 | -------- | ------- | ----------- |
-| `scc_reg_code` | - | [https://scc.suse.com](SUSE Customer Center) registration code (*received after trial registration or purchase*) |
+| `scc_reg_code` | - | [SUSE Customer Center](https://scc.suse.com) registration code (*received after trial registration or purchase*) |
 | `scc_mail` | - | SUSE Customer Center mail address |
 | `sles_modules` | (*Modules required for SUSE Manager 4.x*) | Modules to enable before installation |
 | `use_lvm` | `true` | Use LVM to create application volumes |
