@@ -30,7 +30,7 @@ org_login: "admin"
 org_password: "admin"
 
 # firewall settings
-config_firewall: true
+config_firewall: false
 default_zone: internal
 firewall_services:
   - suse-manager-server

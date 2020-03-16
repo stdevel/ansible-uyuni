@@ -63,10 +63,11 @@ def test_firewall(host):
     # get variables from file
     ansible_vars = host.ansible("include_vars", "file=main.yml")
     # check if services are enabled
-    with host.sudo():
-        cmd_fw = host.run("firewall-cmd --list-services")
-        for srv in ansible_vars["ansible_facts"]["firewall_services"]:
-            assert srv in cmd_fw.stdout.strip()
+    if ansible_vars["ansible_facts"]["config_firewall"]:
+        with host.sudo():
+            cmd_fw = host.run("firewall-cmd --list-services")
+            for srv in ansible_vars["ansible_facts"]["firewall_services"]:
+                assert srv in cmd_fw.stdout.strip()
 
 
 def test_org(host):
