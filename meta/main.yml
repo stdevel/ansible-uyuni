@@ -9,7 +9,11 @@ galaxy_info:
 
   platforms:
     - name: opensuse
+      versions:
+        - 15.1
     - name: sles
+      versions:
+        - 15
 
   galaxy_tags:
     - systemsmanagement
