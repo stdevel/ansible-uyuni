@@ -15,7 +15,7 @@ The test environment consists of two test scenarios:
 - `default` - default scenario with VM running openSUSE Leap 15.1
 - `suma` - SUSE Manager 4.x scenario with VM running SUSE Linux Enterprise Server 15 SP1
 
-### SUSE licensing hints
+### SUSE hints
 In order to run tests against SUSE Linux Enterprise Server 15 SP1 / SUSE Manager 4.x you will either require a valid subscription or a trial license.
 You can request a [60-day trial on the SUSE website.](https://www.suse.com/products/suse-manager/download/)
 For this, you will need to create a [SUSE Customer Center](https://scc.suse.com) account - you will **not** be able to request an additional trial for the same release after the 60 days have expired.
@@ -31,6 +31,8 @@ When using SLES, alter ``suma/converge.yml`` like this:
       scc_mail: <insert SCC mail here>
 ...
 ```
+
+Also, you will need a SLES Vagrant box. As the [SUSE End-user license agreement](https://www.suse.com/licensing/eula/download/sles/sles15sp1-en-us.pdf) for SLES 15 SP1 does not allow re-distributing binary releases, I'm unable to provide you a Vagrant box. But I created a workflow and documentation for you to create one on your own; it's available [here](https://github.com/stdevel/packer-sles15) - refer to the documentation to see how it's build.
 
 ## Usage
 In order to create the test environment execute the following command:
