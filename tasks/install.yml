@@ -1,8 +1,12 @@
 ---
-- name: Install Uyuni and tools
+- name: Install Uyuni pattern
+  zypper:
+    name: "{{ uyuni_pattern }}"
+  become: true
+
+- name: Install tools
   zypper:
     name: "{{ uyuni_packages }}"
-    state: present
   become: true
 
 - name: Stage deploy configuration
