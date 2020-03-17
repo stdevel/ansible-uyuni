@@ -12,11 +12,16 @@ uyuni_packages:
 scc_check_registration: true
 scc_check_modules: true
 sles_modules:
-  - sle-module-basesystem/15.1/x86_64
-  - sle-module-python2/15.1/x86_64
-  - sle-module-suse-manager-server/4/x86_64
-  - sle-module-server-applications/15.1/x86_64
-  - sle-module-web-scripting/15.1/x86_64
+  - name: sle-module-basesystem
+    identifier: sle-module-basesystem/15.1/x86_64
+  - name: sle-module-python2
+    identifier: sle-module-python2/15.1/x86_64
+  - name: sle-module-suse-manager-server
+    identifier: sle-module-suse-manager-server/4/x86_64
+  - name: sle-module-server-applications
+    identifier: sle-module-server-applications/15.1/x86_64
+  - name: sle-module-web-scripting
+    identifier: sle-module-web-scripting/15.1/x86_64
 
 # storage configuration
 use_lvm: true

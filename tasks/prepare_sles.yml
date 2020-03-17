@@ -1,25 +1,26 @@
 ---
-- name: Check if system is registered
-  command: SUSEConnect --status-text
+- name: Check system registration
+  command: SUSEConnect --status
   changed_when: false
-  register: scc_registered
-  when:
-    - scc_check_registration
+  register: scc_registration
+  when: scc_check_registration or scc_check_modules
   become: true
 
 - name: Register system
   command: "SUSEConnect -r {{ scc_reg_code }} -e {{ scc_mail }}"
   when:
-    - '"not registered" in scc_registered.stdout | lower'
     - scc_check_registration
+    - 'scc_registration.stdout | from_json | json_query(query_filter) | join | lower != "registered"'
+  vars:
+    - query_filter: "[?identifier == 'SLES'].status"
   become: true
 
-- name: Check enabled modules
-
 - name: Enable modules
-  command: "SUSEConnect -p {{ item }}"
+  command: "SUSEConnect -p {{ item.identifier }}"
   loop: "{{ sles_modules }}"
-  # TODO: only if not already activated
   when:
     - scc_check_modules
+    - 'scc_registration.stdout | from_json | json_query(query_filter) | join | lower != "registered"'
+  vars:
+    - query_filter: "[?identifier == '{{ item.name }}'].status"
   become: true
