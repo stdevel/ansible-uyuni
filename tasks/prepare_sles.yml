@@ -3,15 +3,23 @@
   command: SUSEConnect --status-text
   changed_when: false
   register: scc_registered
+  when:
+    - scc_check_registration
   become: true
 
 - name: Register system
   command: "SUSEConnect -r {{ scc_reg_code }} -e {{ scc_mail }}"
-  when: '"not registered" in scc_registered.stdout | lower'
+  when:
+    - '"not registered" in scc_registered.stdout | lower'
+    - scc_check_registration
   become: true
+
+- name: Check enabled modules
 
 - name: Enable modules
   command: "SUSEConnect -p {{ item }}"
   loop: "{{ sles_modules }}"
   # TODO: only if not already activated
+  when:
+    - scc_check_modules
   become: true

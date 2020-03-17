@@ -9,6 +9,8 @@ uyuni_repo: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni
 uyuni_packages:
   - spacewalk-utils
   - spacecmd
+scc_check_registration: true
+scc_check_modules: true
 sles_modules:
   - sle-module-basesystem/15.1/x86_64
   - sle-module-python2/15.1/x86_64

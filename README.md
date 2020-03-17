@@ -17,6 +17,8 @@ Role Variables
 | -------- | ------- | ----------- |
 | `scc_reg_code` | - | [SUSE Customer Center](https://scc.suse.com) registration code (*received after trial registration or purchase*) |
 | `scc_mail` | - | SUSE Customer Center mail address |
+| `scc_check_registration` | `true` | Register system if unregistered |
+| `scc_check_modules` | `true` | Activate required modules if not already enabled |
 | `sles_modules` | (*Modules required for SUSE Manager 4.x*) | Modules to enable before installation |
 | `use_lvm` | `true` | Use LVM to create application volumes |
 | `vg_uyuni` | `uyuni` | LVM volume group to create for Docker data |
