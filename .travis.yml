@@ -15,6 +15,9 @@ install:
   # Install ansible
   - pip install ansible
 
+  # Install JMESpath
+  - pip install jmespath
+
   # Check ansible version
   - ansible --version
 

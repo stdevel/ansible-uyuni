@@ -9,10 +9,16 @@ galaxy_info:
 
   platforms:
     - name: opensuse
+      versions:
+        - 15.1
     - name: sles
+      versions:
+        - 15
 
   galaxy_tags:
-    - uyuni
     - systemsmanagement
+    - uyuni
+    - suse
+    - manager
 
 dependencies: []

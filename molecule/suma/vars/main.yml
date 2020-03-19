@@ -6,7 +6,7 @@ core_packages:
   - man
 uyuni_repo: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable/images/repo/Uyuni-Server-POOL-x86_64-Media1/"
 uyuni_packages:
-  - patterns-uyuni_server
+  - patterns-suma_server
   - spacewalk-utils
   - spacecmd
 

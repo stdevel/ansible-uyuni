@@ -7,9 +7,21 @@ core_packages:
   - firewalld
 uyuni_repo: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable/images/repo/Uyuni-Server-POOL-x86_64-Media1"
 uyuni_packages:
-  - patterns-uyuni_server
   - spacewalk-utils
   - spacecmd
+scc_check_registration: true
+scc_check_modules: true
+sles_modules:
+  - name: sle-module-basesystem
+    identifier: sle-module-basesystem/15.1/x86_64
+  - name: sle-module-python2
+    identifier: sle-module-python2/15.1/x86_64
+  - name: sle-module-suse-manager-server
+    identifier: sle-module-suse-manager-server/4.0/x86_64
+  - name: sle-module-server-applications
+    identifier: sle-module-server-applications/15.1/x86_64
+  - name: sle-module-web-scripting
+    identifier: sle-module-web-scripting/15.1/x86_64
 
 # storage configuration
 use_lvm: true

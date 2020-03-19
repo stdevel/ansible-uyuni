@@ -5,16 +5,19 @@ driver:
   name: vagrant
   provider:
     name: virtualbox
-lint:
-  name: yamllint
+lint: |
+    yamllint .
+    ansible-lint
+    flake8
 platforms:
-  - name: opensuse-leap
+  - name: opensuse-leap151
     box: generic/opensuse15
+    cpus: 2
+    memory: 4096
+    provider_raw_config_args:
+      - "customize ['createhd', '--filename', 'uyuni01.vdi', '--size', 50 * 1024]"
+      - "customize ['storageattach', :id,  '--storagectl', 'IDE Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', 'uyuni01.vdi']"
 provisioner:
   name: ansible
-  lint:
-    name: ansible-lint
 verifier:
   name: testinfra
-  lint:
-    name: flake8
