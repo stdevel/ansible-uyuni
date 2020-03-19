@@ -79,3 +79,5 @@ channels: []
 # create dict items like this:
 # - {"name": "centos7", "arch": "x86_64"}
 # - {"name": "centos7-updates", "arch": "x86_64"}
+sync_channels: false
+bootstrap_repos: false
