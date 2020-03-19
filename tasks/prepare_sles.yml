@@ -12,7 +12,7 @@
     - scc_check_registration
     - 'scc_registration.stdout | from_json | json_query(query_filter) | join | lower != "registered"'
   vars:
-    - query_filter: "[?identifier == 'SLES'].status"
+    - query_filter: "[?identifier == 'SUSE-Manager-Server'].status"
   become: true
 
 - name: Enable modules
