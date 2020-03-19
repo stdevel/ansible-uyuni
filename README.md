@@ -56,8 +56,10 @@ Role Variables
 | `setup_defs_cronjob` | `false` | Flag whether DEFS cronjob should be generated |
 | `cefs_path` | `/opt/errata-import` | Path to install CEFS and the wrapper script to |
 | `channels`| *empty* | Common channels to synchronize (*e.g. ``centos7`` and ``epel7``*) |
+| `sync_channels` | `false` | Flag whether created channels should be synced |
+| `bootstrap_repos` | `false` | Flag whether Salt bootstrap repositories should be created |
 
-When supplying channels, ensure passing an array with dicts like this:
+When supplying channels to create in `channels`, ensure passing an array with dicts like this:
 ```
 [{"name": "centos7", "arch": "x86_64"}, {"name": "centos7-updates", "arch": "x86_64"}]
 ```
