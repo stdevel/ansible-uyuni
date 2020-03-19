@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/stdevel/ansible-uyuni.svg?branch=master)](https://travis-ci.org/stdevel/ansible-uyuni)
 
-ansible-uyuni
-=============
+uyuni
+=====
 
 This role prepares, installs and configures [Uyuni](https://uyuni-project.org) and [SUSE Manager](https://www.suse.com/products/suse-manager/).
 
@@ -77,7 +77,7 @@ Refer to the following example:
 ```
     - hosts: servers
       roles:
-         - stdevel.ansible_uyuni
+         - stdevel.uyuni
 ```
 
 Set variables if required, e.g.:
@@ -86,7 +86,7 @@ Set variables if required, e.g.:
 - hosts: uyuni.giertz.loc
   remote_user: root
   roles:
-    - role: ansible-uyuni
+    - role: stdevel.uyuni
       setup_cefs: true
       setup_cefs_cronjob: true
       setup_defs: true
@@ -100,7 +100,7 @@ Don't forget setting SUSE-related variables when deploying SUSE Manager:
 ```
     - hosts: servers
       roles:
-        - role: stdevel.ansible_uyuni
+        - role: stdevel.uyuni
           scc_reg_code: DERP1337LULZ
           scc_mail: bla@foo.bar
 ```

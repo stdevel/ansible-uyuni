@@ -1,5 +1,4 @@
 ---
-# tasks file for ansible-uyuni
 - name: Include variables
   include_vars: "{{ ansible_distribution | regex_replace(' ', '_') | lower }}.yml"
 
