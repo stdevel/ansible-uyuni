@@ -32,7 +32,10 @@ When using SLES, alter ``suma/converge.yml`` like this:
 ...
 ```
 
-Also, you will need a SLES Vagrant box. As the [SUSE End-user license agreement](https://www.suse.com/licensing/eula/download/sles/sles15sp1-en-us.pdf) for SLES 15 SP1 does not allow re-distributing binary releases, I'm unable to provide you a Vagrant box. But I created a workflow and documentation for you to create one on your own; it's available [here](https://github.com/stdevel/packer-sles15) - refer to the documentation to see how it's build.
+Also, you will need a SLES Vagrant box. As the [SUSE End-user license agreement](https://www.suse.com/licensing/eula/download/sles/sles15sp1-en-us.pdf) for SLES 15 SP1 does not allow re-distributing binary releases, I'm unable to provide you a Vagrant box.
+You might want to have a look at these sites in order to find out how to create SLE 15 Vagrant boxes:
+- https://github.com/lavabit/robox
+- https://github.com/chef/bento/tree/master/packer_templates/sles
 
 ## Usage
 In order to create the test environment execute the following command:
