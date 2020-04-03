@@ -72,5 +72,5 @@
         name: firewalld
         state: restarted
         when: set_zone.changed or set_services.changed
-  when: config_firewall
+  when: config_firewall | bool
   become: true
