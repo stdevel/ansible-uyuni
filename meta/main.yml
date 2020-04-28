@@ -2,7 +2,7 @@
 galaxy_info:
   role_name: uyuni
   author: Christian Stankowic
-  description: Prepares, installs and configures Uyuni
+  description: Prepares, installs and configures Uyuni or SUSE Manager
   issue_tracker_url: https://github.com/stdevel/ansible-uyuni/issues
   license: BSD
 
