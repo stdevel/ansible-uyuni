@@ -1,19 +1,16 @@
 [![Build Status](https://travis-ci.org/stdevel/ansible-uyuni.svg?branch=master)](https://travis-ci.org/stdevel/ansible-uyuni)
 
-uyuni
-=====
+# uyuni
 
 This role prepares, installs and configures [Uyuni](https://uyuni-project.org) and [SUSE Manager](https://www.suse.com/products/suse-manager/).
 
-Requirements
-------------
+## Requirements
 
 Make sure to install the `jmespath` Python module.
 
 The system needs access to the internet. Also, you will need an openSUSE Leap or SUSE Linux Enterprise Server 15.1 installation.
 
-Role Variables
---------------
+## Role Variables
 
 | Variable | Default | Description |
 | -------- | ------- | ----------- |
@@ -62,30 +59,30 @@ Role Variables
 | `bootstrap_repos` | `false` | Flag whether Salt bootstrap repositories should be created |
 
 When supplying channels to create in `channels`, ensure passing an array with dicts like this:
-```
+
+```json
 [{"name": "centos7", "arch": "x86_64"}, {"name": "centos7-updates", "arch": "x86_64"}]
 ```
 
 For available channels and architectures, see the ``spacewalk-common-channels.ini`` installed by the ``spacewalk-utils`` package. There is also [an online version](https://github.com/spacewalkproject/spacewalk/blob/master/utils/spacewalk-common-channels.ini) on GitHub.
 
-Dependencies
-------------
+## Dependencies
 
 No dependencies.
 
-Example Playbook
-----------------
+## Example Playbook
 
 Refer to the following example:
 
-```
+```yaml
     - hosts: servers
       roles:
          - stdevel.uyuni
 ```
 
 Set variables if required, e.g.:
-```
+
+```yaml
 ---
 - hosts: uyuni.giertz.loc
   remote_user: root
@@ -101,7 +98,8 @@ Set variables if required, e.g.:
 ```
 
 Don't forget setting SUSE-related variables when deploying SUSE Manager:
-```
+
+```yaml
     - hosts: servers
       roles:
         - role: stdevel.uyuni
@@ -109,12 +107,10 @@ Don't forget setting SUSE-related variables when deploying SUSE Manager:
           scc_mail: bla@foo.bar
 ```
 
-License
--------
+## License
 
 Apache 2.0
 
-Author Information
-------------------
+## Author Information
 
 Christian Stankowic (info@cstan.io)

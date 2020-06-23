@@ -4,6 +4,7 @@
     name: "*"
     state: latest
   become: true
+
 - name: Install core utilities
   zypper:
     name: "{{ core_packages }}"
@@ -16,6 +17,7 @@
     pvs: "{{ pv_uyuni }}"
   become: true
   when: use_lvm | bool
+
 - name: Create logical volumes, file systems and mount points
   block:
     - name: Create logical volumes
