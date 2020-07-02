@@ -12,6 +12,7 @@ lint: |
 platforms:
   - name: opensuse-leap151
     box: generic/opensuse15
+    box_version: "3.0.10"
     cpus: 2
     memory: 4096
     provider_raw_config_args:
