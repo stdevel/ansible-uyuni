@@ -108,6 +108,17 @@ Don't forget setting SUSE-related variables when deploying SUSE Manager:
           scc_mail: bla@foo.bar
 ```
 
+## Common issues
+
+Error when running the playbook:
+
+```shell
+TASK [ansible-uyuni : Add Uyuni repository] ************************************
+An exception occurred during task execution. To see the full traceback, use -vvv. The error was: ImportError: No module named xml.dom.minidom
+```
+
+Install the missing `python-xml` package.
+
 ## License
 
 Apache 2.0
