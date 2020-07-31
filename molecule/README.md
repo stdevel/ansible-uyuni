@@ -1,8 +1,11 @@
 # molecule
+
 This folder contains molecule configuration and tests.
 
 ## Preparation
+
 Ensure to the following installed:
+
 - [Vagrant](https://vagrantup.com)
 - [Oracle VirtualBox](https://virtualbox.org)
 - Python modules
@@ -11,17 +14,21 @@ Ensure to the following installed:
   - [`python-vagrant`](https://pypi.org/project/python-vagrant/)
 
 ## Environment
+
 The test environment consists of two test scenarios:
+
 - `default` - default scenario with VM running openSUSE Leap 15.1
 - `suma` - SUSE Manager 4.x scenario with VM running SUSE Linux Enterprise Server 15 SP1
 
 ### SUSE hints
+
 In order to run tests against SUSE Linux Enterprise Server 15 SP1 / SUSE Manager 4.x you will either require a valid subscription or a trial license.
 You can request a [60-day trial on the SUSE website.](https://www.suse.com/products/suse-manager/download/)
 For this, you will need to create a [SUSE Customer Center](https://scc.suse.com) account - you will **not** be able to request an additional trial for the same release after the 60 days have expired.
 
 When using SLES, alter ``suma/converge.yml`` like this:
-```
+
+```yml
 ---
 - name: Converge machines
   hosts: all
@@ -34,8 +41,9 @@ When using SLES, alter ``suma/converge.yml`` like this:
 
 Also, you will need a SLES Vagrant box. As the [SUSE End-user license agreement](https://www.suse.com/licensing/eula/download/sles/sles15sp1-en-us.pdf) for SLES 15 SP1 does not allow re-distributing binary releases, I'm unable to provide you a Vagrant box.
 You might want to have a look at these sites in order to find out how to create SLE 15 Vagrant boxes:
-- https://github.com/lavabit/robox
-- https://github.com/chef/bento/tree/master/packer_templates/sles
+
+- [https://github.com/lavabit/robox](https://github.com/lavabit/robox)
+- [https://github.com/chef/bento/tree/master/packer_templates/sles](https://github.com/chef/bento/tree/master/packer_templates/sles)
 
 Beginning with SLE 15 SP2, SUSE ships Vagrantboxes again. To import it, use the following command:
 
@@ -46,19 +54,22 @@ $ vagrant box add sles15-sp2 SLES15-SP2-Vagrant.x86_64-15.2-<provider>-GM.vagran
 Replace `<provider>` with `virtualbox` or `libvirt`.
 
 ## Usage
+
 In order to create the test environment execute the following command:
 
-```
+```shell
 $ molecule create
 ```
 
 Run the Ansible role:
-```
+
+```shell
 $ molecule converge
 ```
 
 Finally, run the tests:
-```
+
+```shell
 $ molecule verify
 ...
 collected 8 items

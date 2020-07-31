@@ -34,7 +34,7 @@
     url: https://localhost/rhn/newlogin/CreateFirstUser.do
     method: POST
     validate_certs: false
-    body: "submitted=true&orgName={{ org_name }}&login={{ org_login }}&desiredpassword={{ org_password }}&desiredpasswordConfirm={{ org_password }}&email={{ org_mail }}&firstNames={{ org_first_name }}&lastName={{ org_last_name }}"
+    body: "submitted=true&orgName={{ org_name }}&login={{ org_login }}&desiredpassword={{ org_password }}&desiredpasswordConfirm={{ org_password }}&email={{ org_mail }}&firstNames={{ org_first_name }}&lastName={{ org_last_name }}" # noqa: 204
     body_format: "form-urlencoded"
     status_code:
       - 201

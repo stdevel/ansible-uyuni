@@ -10,4 +10,3 @@
   when:
     - "{{ suma_release }} == '4.1'"
     - "ansible_distribution_version != '15.2'"
-

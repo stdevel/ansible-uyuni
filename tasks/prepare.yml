@@ -1,5 +1,5 @@
 ---
-- name: Update system
+- name: Update system # noqa: 403
   zypper:
     name: "*"
     state: latest
