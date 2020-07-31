@@ -14,6 +14,7 @@ The system needs access to the internet. Also, you will need an openSUSE Leap or
 
 | Variable | Default | Description |
 | -------- | ------- | ----------- |
+| `suma_release` | `4.1` | SUSE Manager release to install (*4.0 or 4.1*) |
 | `scc_reg_code` | - | [SUSE Customer Center](https://scc.suse.com) registration code (*received after trial registration or purchase*) |
 | `scc_mail` | - | SUSE Customer Center mail address |
 | `scc_check_registration` | `true` | Register system if unregistered |
