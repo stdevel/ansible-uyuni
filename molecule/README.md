@@ -37,6 +37,14 @@ You might want to have a look at these sites in order to find out how to create 
 - https://github.com/lavabit/robox
 - https://github.com/chef/bento/tree/master/packer_templates/sles
 
+Beginning with SLE 15 SP2, SUSE ships Vagrantboxes again. To import it, use the following command:
+
+```shell
+$ vagrant box add sles15-sp2 SLES15-SP2-Vagrant.x86_64-15.2-<provider>-GM.vagrant.<provider>.box
+```
+
+Replace `<provider>` with `virtualbox` or `libvirt`.
+
 ## Usage
 In order to create the test environment execute the following command:
 
@@ -62,3 +70,5 @@ Verifier completed successfully.
 ```
 
 For running tests in the `suma` scenario context, run the commands above with the `-s suma` parameter.
+
+When creating your own Vagrantbox, you will need to edit `suma/molecule/molecule.yml` and change the name.
