@@ -3,8 +3,6 @@ dependency:
   name: galaxy
 driver:
   name: vagrant
-  provider:
-    name: virtualbox
 lint: |
     yamllint .
     ansible-lint
@@ -15,9 +13,6 @@ platforms:
     box_version: "3.0.10"
     cpus: 2
     memory: 4096
-    provider_raw_config_args:
-      - "customize ['createhd', '--filename', 'uyuni01.vdi', '--size', 50 * 1024]"
-      - "customize ['storageattach', :id,  '--storagectl', 'IDE Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', 'uyuni01.vdi']"
 provisioner:
   name: ansible
 verifier:
