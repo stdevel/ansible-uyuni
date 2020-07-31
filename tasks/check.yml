@@ -1,4 +1,4 @@
 ---
-- name: Ensure having 15 SP1 release
-  fail: msg="Please upgrade to SP1"
-  when: "ansible_distribution_version != '15.1'"
+- name: Ensure having 15 SP2 release
+  fail: msg="Please upgrade to SP2"
+  when: "ansible_distribution_version != '15.2'"
