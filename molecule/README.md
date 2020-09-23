@@ -63,6 +63,15 @@ $ molecule create
 
 **Double-check** the VM settings! Sometimes Molecule doesn't change the CPU count and memory size. The result is a crashing installation.
 
+Also ensure that all available updates have been installed
+
+```shell
+$ molecule login --host opensuse-leap15
+$ sudo zypper update -y ; exit
+$ molecule login --host suma4
+$ sudo zypper update -y ; exit
+```
+
 Run the Ansible role:
 
 ```shell

@@ -1,10 +1,4 @@
 ---
-- name: Update system # noqa: 403
-  zypper:
-    name: "*"
-    state: latest
-  become: true
-
 - name: Install core utilities
   zypper:
     name: "{{ core_packages }}"

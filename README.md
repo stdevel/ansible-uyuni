@@ -108,6 +108,8 @@ Don't forget setting SUSE-related variables when deploying SUSE Manager:
           scc_mail: bla@foo.bar
 ```
 
+Ensure having all available system updates installed **before** running the playbook!
+
 ## Common issues
 
 Error when running the playbook:
