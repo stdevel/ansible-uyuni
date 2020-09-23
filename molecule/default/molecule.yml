@@ -3,21 +3,16 @@ dependency:
   name: galaxy
 driver:
   name: vagrant
-  provider:
-    name: virtualbox
 lint: |
     yamllint .
     ansible-lint
     flake8
 platforms:
-  - name: opensuse-leap151
+  - name: opensuse-leap15
     box: generic/opensuse15
-    box_version: "3.0.10"
+    box_version: "3.0.22"
     cpus: 2
     memory: 4096
-    provider_raw_config_args:
-      - "customize ['createhd', '--filename', 'uyuni01.vdi', '--size', 50 * 1024]"
-      - "customize ['storageattach', :id,  '--storagectl', 'IDE Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', 'uyuni01.vdi']"
 provisioner:
   name: ansible
 verifier:

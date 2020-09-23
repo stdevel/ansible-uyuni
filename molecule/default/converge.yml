@@ -3,6 +3,7 @@
   hosts: all
   roles:
     - role: ansible-uyuni
+      use_lvm: false
       config_firewall: false
       setup_cefs: true
       setup_cefs_cronjob: true

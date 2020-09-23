@@ -14,6 +14,7 @@ The system needs access to the internet. Also, you will need an openSUSE Leap or
 
 | Variable | Default | Description |
 | -------- | ------- | ----------- |
+| `suma_release` | `4.1` | SUSE Manager release to install (*4.0 or 4.1*) |
 | `scc_reg_code` | - | [SUSE Customer Center](https://scc.suse.com) registration code (*received after trial registration or purchase*) |
 | `scc_mail` | - | SUSE Customer Center mail address |
 | `scc_check_registration` | `true` | Register system if unregistered |
@@ -106,6 +107,19 @@ Don't forget setting SUSE-related variables when deploying SUSE Manager:
           scc_reg_code: DERP1337LULZ
           scc_mail: bla@foo.bar
 ```
+
+Ensure having all available system updates installed **before** running the playbook!
+
+## Common issues
+
+Error when running the playbook:
+
+```shell
+TASK [ansible-uyuni : Add Uyuni repository] ************************************
+An exception occurred during task execution. To see the full traceback, use -vvv. The error was: ImportError: No module named xml.dom.minidom
+```
+
+Install the missing `python-xml` package.
 
 ## License
 

@@ -3,8 +3,9 @@
   hosts: all
   roles:
     - role: ansible-uyuni
-      scc_reg_code: <insert code here>
-      scc_mail: <insert SCC mail here>
+      use_lvm: false
+      scc_reg_code: "<insert code here>"
+      scc_mail: "<insert SCC mail here>"
       config_firewall: false
       setup_cefs: true
       setup_cefs_cronjob: true

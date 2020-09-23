@@ -1,0 +1,12 @@
+---
+- name: Ensure having supported SP release for SUMA 4.0
+  fail: msg="Please upgrade to SP1"
+  when:
+    - suma_release == 4.0
+    - ansible_distribution_version != '15.1'
+
+- name: Ensure having supported SP release for SUMA 4.1
+  fail: msg="Please upgrade to SP2"
+  when:
+    - suma_release == 4.1
+    - ansible_distribution_version != '15.2'
