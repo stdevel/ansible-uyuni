@@ -6,8 +6,21 @@
   when: scc_check_registration or scc_check_modules
   become: true
 
+- name: Prepare JeOS
+  block:
+    - name: Remove SLES release
+      command: 'rpm -e --nodeps sles-release'
+      args:
+        removes: /etc/products.d/SLES.prod
+    - name: Alter zypp configuration
+      lineinfile:
+        path: /etc/zypp/zypp.conf
+        regexp: '^solver.onlyRequires'
+        line: 'solver.onlyRequires = false'
+  become: true
+
 - name: Register system
-  command: "SUSEConnect -r {{ scc_reg_code }} -e {{ scc_mail }}"
+  command: "SUSEConnect -p SUSE-Manager-Server/{{ suma_release }}/x86_64 -r {{ scc_reg_code }} -e {{ scc_mail }}"
   when:
     - scc_check_registration
     - 'scc_registration.stdout | from_json | json_query(query_filter) | join | lower != "registered"'

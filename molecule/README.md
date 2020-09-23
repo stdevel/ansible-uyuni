@@ -17,12 +17,12 @@ Ensure to the following installed:
 
 The test environment consists of two test scenarios:
 
-- `default` - default scenario with VM running openSUSE Leap 15.1
-- `suma` - SUSE Manager 4.x scenario with VM running SUSE Linux Enterprise Server 15 SP1
+- `default` - default scenario with VM running openSUSE Leap 15.2
+- `suma` - SUSE Manager 4.x scenario with VM running SUSE Linux Enterprise Server 15 SP1 or SP2
 
 ### SUSE hints
 
-In order to run tests against SUSE Linux Enterprise Server 15 SP1 / SUSE Manager 4.x you will either require a valid subscription or a trial license.
+In order to run tests against SUSE Manager 4.x you will either require a valid subscription or a trial license.
 You can request a [60-day trial on the SUSE website.](https://www.suse.com/products/suse-manager/download/)
 For this, you will need to create a [SUSE Customer Center](https://scc.suse.com) account - you will **not** be able to request an additional trial for the same release after the 60 days have expired.
 
@@ -60,6 +60,8 @@ In order to create the test environment execute the following command:
 ```shell
 $ molecule create
 ```
+
+**Double-check** the VM settings! Sometimes Molecule doesn't change the CPU count and memory size. The result is a crashing installation.
 
 Run the Ansible role:
 
