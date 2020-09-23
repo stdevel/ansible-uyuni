@@ -12,17 +12,23 @@ uyuni_packages:
 suma_release: 4.1
 scc_check_registration: true
 scc_check_modules: true
+# The 'Desktop Applications' and 'Development Tools'
+# modules are required for CEFS/DEFS!
 sles_modules:
   - name: sle-module-basesystem
     identifier: "sle-module-basesystem/{{ ansible_distribution_version }}/x86_64"
   - name: sle-module-python2
     identifier: "sle-module-python2/{{ ansible_distribution_version }}/x86_64"
-  - name: sle-module-web-scripting
-    identifier: "sle-module-web-scripting/{{ ansible_distribution_version }}/x86_64"
-  - name: sle-module-suse-manager-server
-    identifier: "sle-module-suse-manager-server/{{ suma_release }}/x86_64"
   - name: sle-module-server-applications
     identifier: "sle-module-server-applications/{{ ansible_distribution_version }}/x86_64"
+  - name: sle-module-web-scripting
+    identifier: "sle-module-web-scripting/{{ ansible_distribution_version }}/x86_64"
+  - name: sle-module-desktop-applications
+    identifier: "sle-module-desktop-applications/{{ ansible_distribution_version }}/x86_64"
+  - name: sle-module-development-tools
+    identifier: "sle-module-development-tools/{{ ansible_distribution_version }}/x86_64"
+  - name: sle-module-suse-manager-server
+    identifier: "sle-module-suse-manager-server/{{ suma_release }}/x86_64"
 
 # storage configuration
 use_lvm: true
