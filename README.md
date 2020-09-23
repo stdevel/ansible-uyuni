@@ -8,7 +8,7 @@ This role prepares, installs and configures [Uyuni](https://uyuni-project.org) a
 
 Make sure to install the `jmespath` Python module.
 
-The system needs access to the internet. Also, you will need an openSUSE Leap or SUSE Linux Enterprise Server 15.1 installation.
+The system needs access to the internet. Also, you will need an openSUSE Leap or SUSE Linux Enterprise Server 15.1+ installation.
 
 ## Role Variables
 
