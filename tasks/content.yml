@@ -53,7 +53,7 @@
   register: create_result
   changed_when: '"already in use" not in create_result.stderr | lower'
   become: true
-  when: uyuni_channels|length > 0
+  when: uyuni_channels | length > 0
 
 - name: Get software channels
   command: spacecmd -q -u {{ uyuni_org_login }} -p {{ uyuni_org_password }} softwarechannel_list
