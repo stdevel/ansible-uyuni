@@ -3,7 +3,7 @@
   hosts: all
   roles:
     - role: ansible-uyuni
-      use_lvm: false
+      uyuni_use_lvm: false
       uyuni_cefs_setup: true
       uyuni_cefs_setup_cronjob: true
       uyuni_defs_setup: true
