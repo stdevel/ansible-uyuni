@@ -16,9 +16,9 @@ def test_lvm(host):
     """
     # get variables from file
     ansible_vars = host.ansible("include_vars", "file=main.yml")
-    if ansible_vars["ansible_facts"]["use_lvm"]:
+    if ansible_vars["ansible_facts"]["uyuni_use_lvm"]:
         # check file systems
-        for filesys in ansible_vars["ansible_facts"]["filesystems"]:
+        for filesys in ansible_vars["ansible_facts"]["uyuni_filesystems"]:
             assert host.mount_point(filesys["mountpoint"]).exists
             assert host.mount_point(
                 filesys["mountpoint"]
@@ -32,7 +32,7 @@ def test_packages(host):
     # get variables from file
     ansible_vars = host.ansible("include_vars", "file=main.yml")
     # check dependencies and Uyuni packages
-    for pkg in ansible_vars["ansible_facts"]["core_packages"] + \
+    for pkg in ansible_vars["ansible_facts"]["uyuni_core_packages"] + \
             ansible_vars["ansible_facts"]["uyuni_packages"]:
         assert host.package(pkg).is_installed
 
@@ -63,10 +63,10 @@ def test_firewall(host):
     # get variables from file
     ansible_vars = host.ansible("include_vars", "file=main.yml")
     # check if services are enabled
-    if ansible_vars["ansible_facts"]["config_firewall"]:
+    if ansible_vars["ansible_facts"]["uyuni_firewall_config"]:
         with host.sudo():
             cmd_fw = host.run("firewall-cmd --list-services")
-            for srv in ansible_vars["ansible_facts"]["firewall_services"]:
+            for srv in ansible_vars["ansible_facts"]["uyuni_firewall_services"]:    # noqa: 204
                 assert srv in cmd_fw.stdout.strip()
 
 
@@ -79,10 +79,10 @@ def test_org(host):
     # check if organization exists
     cmd_org = host.run(
         "spacecmd -q -u %s -p %s org_list",
-        ansible_vars["ansible_facts"]["org_login"],
-        ansible_vars["ansible_facts"]["org_password"]
+        ansible_vars["ansible_facts"]["uyuni_org_login"],
+        ansible_vars["ansible_facts"]["uyuni_org_password"]
         )
-    assert cmd_org.stdout.strip() == ansible_vars["ansible_facts"]["org_name"]
+    assert cmd_org.stdout.strip() == ansible_vars["ansible_facts"]["uyuni_org_name"]    # noqa: 204
 
 
 def test_errata(host):
@@ -91,18 +91,18 @@ def test_errata(host):
     """
     # get variables from file
     ansible_vars = host.ansible("include_vars", "file=main.yml")
-    if ansible_vars["ansible_facts"]["setup_cefs"]:
+    if ansible_vars["ansible_facts"]["uyuni_cefs_setup"]:
         # check package dependencies
-        for pkg in ansible_vars["ansible_facts"]["cefs_packages"]:
+        for pkg in ansible_vars["ansible_facts"]["uyuni_cefs_packages"]:
             assert host.package(pkg).is_installed
         # check script
         assert host.file(
-            "{}/errata-import.pl" % ansible_vars["ansible_facts"]["cefs_path"]
+            "{}/errata-import.pl" % ansible_vars["ansible_facts"]["uyuni_cefs_path"]    # noqa: 204
             ).exists
         # check cronjobs
-        if ansible_vars["ansible_facts"]["setup_cefs_cronjob"]:
+        if ansible_vars["ansible_facts"]["uyuni_cefs_setup_cronjob"]:
             assert host.file("/etc/cron.d/errata-cefs").exists
-        if ansible_vars["ansible_facts"]["setup_defs_cronjob"]:
+        if ansible_vars["ansible_facts"]["uyuni_defs_setup_cronjob"]:
             assert host.file("/etc/cron.d/errata-defs").exists
 
 
@@ -121,15 +121,15 @@ def test_channels(host):
     definitions.read_string(definition_file)
 
     # check channels if defined
-    if len(ansible_vars["ansible_facts"]["channels"]) > 0:
+    if len(ansible_vars["ansible_facts"]["uyuni_channels"]) > 0:
         # get all repositories
         with host.sudo():
             cmd_channels = host.run(
                 "spacecmd -q -u %s -p %s repo_list",
-                ansible_vars["ansible_facts"]["org_login"],
-                ansible_vars["ansible_facts"]["org_password"]
+                ansible_vars["ansible_facts"]["uyuni_org_login"],
+                ansible_vars["ansible_facts"]["uyuni_org_password"]
             )
-        for channel in ansible_vars["ansible_facts"]["channels"]:
+        for channel in ansible_vars["ansible_facts"]["uyuni_channels"]:
             # get repository name (it ain't nice, but it's honest work)
             repo_name = definitions[channel["name"]]["name"]
             repo_name = "External - %s" % repo_name.replace(

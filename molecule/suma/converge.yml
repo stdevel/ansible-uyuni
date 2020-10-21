@@ -3,14 +3,13 @@
   hosts: all
   roles:
     - role: ansible-uyuni
-      use_lvm: false
-      scc_reg_code: "<insert code here>"
-      scc_mail: "<insert SCC mail here>"
-      config_firewall: false
-      setup_cefs: true
-      setup_cefs_cronjob: true
-      setup_defs: true
-      setup_defs_cronjob: true
-      channels:
+      uyuni_use_lvm: false
+      uyuni_scc_reg_code: "<insert code here>"
+      uyuni_scc_mail: "<insert SCC mail here>"
+      uyuni_cefs_setup: true
+      uyuni_cefs_setup_cronjob: true
+      uyuni_defs_setup: true
+      uyuni_defs_setup_cronjob: true
+      uyuni_channels:
         - {"name": "centos7", "arch": "x86_64"}
         - {"name": "centos7-updates", "arch": "x86_64"}

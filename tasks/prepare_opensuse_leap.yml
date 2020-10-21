@@ -5,4 +5,4 @@
     name: uyuni-server-stable
     auto_import_keys: true
   become: true
-  when: use_uyuni_repo | bool
+  when: uyuni_use_repo | bool

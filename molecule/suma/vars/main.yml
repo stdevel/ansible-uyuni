@@ -1,6 +1,6 @@
 ---
 # packages
-core_packages:
+uyuni_core_packages:
   - xfsprogs
   - lvm2
   - man
@@ -11,30 +11,30 @@ uyuni_packages:
   - spacecmd
 
 # storage configuration
-use_lvm: false
+uyuni_use_lvm: false
 
 # Uyuni configuration
-org_name: "Demo"
-org_login: "admin"
-org_password: "admin"
+uyuni_org_name: "Demo"
+uyuni_org_login: "admin"
+uyuni_org_password: "admin"
 
 # firewall settings
-config_firewall: false
-default_zone: internal
-firewall_services:
+uyuni_firewall_config: false
+uyuni_firewall_default_zone: internal
+uyuni_firewall_services:
   - suse-manager-server
 
 # content settings
-setup_cefs: false
-setup_cefs_cronjob: false
-cefs_path: "/opt/errata-import"
-setup_defs: false
-setup_defs_cronjob: false
-cefs_packages:
+uyuni_cefs_setup: false
+uyuni_cefs_setup_cronjob: false
+uyuni_cefs_path: "/opt/errata-import"
+uyuni_defs_setup: false
+uyuni_defs_setup_cronjob: false
+uyuni_cefs_packages:
   - perl
   - perl-Text-Unidecode
   - cron
-channels:
+uyuni_channels:
   - name: centos7
     arch: x86_64
   - name: centos7-updates

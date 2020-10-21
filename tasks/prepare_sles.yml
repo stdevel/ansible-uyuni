@@ -3,7 +3,7 @@
   command: SUSEConnect --status
   changed_when: false
   register: scc_registration
-  when: scc_check_registration or scc_check_modules
+  when: uyuni_scc_check_registration or uyuni_scc_check_modules
   become: true
 
 - name: Prepare JeOS
@@ -20,9 +20,9 @@
   become: true
 
 - name: Register system
-  command: "SUSEConnect -p SUSE-Manager-Server/{{ suma_release }}/x86_64 -r {{ scc_reg_code }} -e {{ scc_mail }}"
+  command: "SUSEConnect -p SUSE-Manager-Server/{{ uyuni_suma_release }}/x86_64 -r {{ uyuni_scc_reg_code }} -e {{ uyuni_scc_mail }}"
   when:
-    - scc_check_registration
+    - uyuni_scc_check_registration
     - 'scc_registration.stdout | from_json | json_query(query_filter) | join | lower != "registered"'
   vars:
     - query_filter: "[?identifier == 'SUSE-Manager-Server'].status"
@@ -30,9 +30,9 @@
 
 - name: Enable modules
   command: "SUSEConnect -p {{ item.identifier }}"
-  loop: "{{ sles_modules }}"
+  loop: "{{ uyuni_sles_modules }}"
   when:
-    - scc_check_modules
+    - uyuni_scc_check_modules
     - 'scc_registration.stdout | from_json | json_query(query_filter) | join | lower != "registered"'
   vars:
     - query_filter: "[?identifier == '{{ item.name }}'].status"

@@ -1,6 +1,6 @@
 ---
-# packages
-core_packages:
+# required core packages
+uyuni_core_packages:
   - xfsprogs
   - lvm2
   - man
@@ -9,12 +9,12 @@ uyuni_repo: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni
 uyuni_packages:
   - spacewalk-utils
   - spacecmd
-suma_release: 4.1
-scc_check_registration: true
-scc_check_modules: true
+uyuni_suma_release: 4.1
+uyuni_scc_check_registration: true
+uyuni_scc_check_modules: true
 # The 'Desktop Applications' and 'Development Tools'
 # modules are required for CEFS/DEFS!
-sles_modules:
+uyuni_sles_modules:
   - name: sle-module-basesystem
     identifier: "sle-module-basesystem/{{ ansible_distribution_version }}/x86_64"
   - name: sle-module-python2
@@ -28,13 +28,13 @@ sles_modules:
   - name: sle-module-development-tools
     identifier: "sle-module-development-tools/{{ ansible_distribution_version }}/x86_64"
   - name: sle-module-suse-manager-server
-    identifier: "sle-module-suse-manager-server/{{ suma_release }}/x86_64"
+    identifier: "sle-module-suse-manager-server/{{ uyuni_suma_release }}/x86_64"
 
 # storage configuration
-use_lvm: true
-vg_uyuni: vg_uyuni
-pv_uyuni: /dev/sdb
-filesystems:
+uyuni_use_lvm: true
+uyuni_vg: vg_uyuni
+uyuni_pv: /dev/sdb
+uyuni_filesystems:
   - name: lv_uyuni
     type: xfs
     mountpoint: /var/spacewalk
@@ -49,42 +49,42 @@ uyuni_mail: "root@localhost"
 uyuni_db_name: "uyuni"
 uyuni_db_user: "uyuni"
 uyuni_db_pass: "uyuni"
-cert_city: "Berlin"
-cert_country: "DE"
-cert_mail: "root@localhost"
-cert_o: "Berlin"
-cert_ou: "Berlin"
-cert_state: "Berlin"
-cert_pass: "uyuni"
-org_name: "Demo"
-org_login: "admin"
-org_password: "admin"
-org_mail: "root@localhost"
-org_first_name: "Anton"
-org_last_name: "Administrator"
+uyuni_cert_city: "Berlin"
+uyuni_cert_country: "DE"
+uyuni_cert_mail: "root@localhost"
+uyuni_cert_o: "Berlin"
+uyuni_cert_ou: "Berlin"
+uyuni_cert_state: "Berlin"
+uyuni_cert_pass: "uyuni"
+uyuni_org_name: "Demo"
+uyuni_org_login: "admin"
+uyuni_org_password: "admin"
+uyuni_org_mail: "root@localhost"
+uyuni_org_first_name: "Anton"
+uyuni_org_last_name: "Administrator"
 
 # additional settings
-use_uyuni_repo: true
+uyuni_use_repo: true
 
 # firewall settings
-config_firewall: true
-default_zone: internal
-firewall_services:
+uyuni_firewall_config: true
+uyuni_firewall_default_zone: internal
+uyuni_firewall_services:
   - suse-manager-server
 
 # content settings
-setup_cefs: false
-setup_cefs_cronjob: false
-cefs_path: "/opt/errata-import"
-setup_defs: false
-setup_defs_cronjob: false
-cefs_packages:
+uyuni_cefs_setup: false
+uyuni_cefs_setup_cronjob: false
+uyuni_cefs_path: "/opt/errata-import"
+uyuni_defs_setup: false
+uyuni_defs_setup_cronjob: false
+uyuni_cefs_packages:
   - perl
   - perl-Text-Unidecode
   - cron
-channels: []
+uyuni_channels: []
 # create dict items like this:
 # - {"name": "centos7", "arch": "x86_64"}
 # - {"name": "centos7-updates", "arch": "x86_64"}
-sync_channels: false
-bootstrap_repos: false
+uyuni_sync_channels: false
+uyuni_bootstrap_repos: false
