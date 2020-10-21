@@ -35,7 +35,7 @@ use_lvm: true
 vg_uyuni: vg_uyuni
 pv_uyuni: /dev/sdb
 filesystems:
-  - name: lv_spacewalk
+  - name: lv_uyuni
     type: xfs
     mountpoint: /var/spacewalk
     size: 10240
