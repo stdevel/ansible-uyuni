@@ -84,11 +84,11 @@ Set variables if required, e.g.:
   remote_user: root
   roles:
     - role: stdevel.uyuni
-      setup_cefs: true
-      setup_cefs_cronjob: true
-      setup_defs: true
-      setup_defs_cronjob: true
-      channels:
+      uyuni_setup_cefs: true
+      uyuni_setup_cefs_cronjob: true
+      uyuni_setup_defs: true
+      uyuni_setup_defs_cronjob: true
+      uyuni_channels:
         - {"name": "centos7", "arch": "x86_64"}
         - {"name": "centos7-updates", "arch": "x86_64"}
 ```
@@ -99,8 +99,8 @@ Don't forget setting SUSE-related variables when deploying SUSE Manager:
 - hosts: servers
   roles:
     - role: stdevel.uyuni
-      scc_reg_code: DERP1337LULZ
-      scc_mail: bla@foo.bar
+      uyuni_scc_reg_code: DERP1337LULZ
+      uyuni_scc_mail: bla@foo.bar
 ```
 
 Ensure having all available system updates installed **before** running the playbook!
