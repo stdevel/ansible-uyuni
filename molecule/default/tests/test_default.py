@@ -137,3 +137,6 @@ def test_channels(host):
                 )
             # ensure that repository exists
             assert repo_name in cmd_channels.stdout.strip().split("\n")
+
+# TODO: def test_monitoring_packages(host):
+# TODO: def test_monitoring_enabled(host):
