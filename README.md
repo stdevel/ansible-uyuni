@@ -53,6 +53,8 @@ The system needs access to the internet. Also, you will need an openSUSE Leap or
 | `uyuni_channels`| *empty* | Common channels to synchronize (*e.g. ``centos7`` and ``epel7``*) |
 | `uyuni_sync_channels` | `false` | Flag whether created channels should be synced |
 | `uyuni_bootstrap_repos` | `false` | Flag whether Salt bootstrap repositories should be created |
+| `uyuni_enable_monitoring` | `false` | Flag whether integrated monitoring stack should be enabled |
+| `uyuni_install_monitoring_formulas` | `false` | Flag whether monitoring Salt Formulas should be installed |
 
 When supplying channels to create in `channels`, ensure passing a list with dicts like this:
 

@@ -16,3 +16,6 @@
 
 - include_tasks: content.yml
   tags: content
+
+- include_tasks: monitoring.yml
+  tags: monitoring

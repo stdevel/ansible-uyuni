@@ -1,0 +1,14 @@
+---
+- name: Install monitoring packages
+  zypper:
+    name: "{{ uyuni_monitoring_packages }}"
+  become: true
+  when: uyuni_enable_monitoring
+
+- name: Install monitoring Salt formulas
+  become: true
+  zypper:
+    name: "{{ uyuni_monitoring_formulas_packages }}"
+  when: uyuni_install_monitoring_formulas
+
+# TODO: enable monitoring in UI?
