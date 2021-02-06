@@ -4,7 +4,6 @@ Molecule unit tests
 import os
 import configparser
 import testinfra.utils.ansible_runner
-import pytest
 
 TESTINFRA_HOSTS = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']
@@ -139,5 +138,34 @@ def test_channels(host):
             # ensure that repository exists
             assert repo_name in cmd_channels.stdout.strip().split("\n")
 
-# TODO: def test_monitoring_packages(host):
-# TODO: def test_monitoring_enabled(host):
+
+def test_monitoring_packages(host):
+    """
+    check if monitoring packages have been installed
+    """
+    # get variables from file
+    ansible_vars = host.ansible("include_vars", "file=molecule/default/vars/main.yml")
+    # set packages
+    pkgs = []
+    if ansible_vars["ansible_facts"]["uyuni_enable_monitoring"]:
+        pkgs = pkgs + ansible_vars["ansible_facts"]["uyuni_monitoring_packages"]
+    if ansible_vars["ansible_facts"]["uyuni_install_monitoring_formulas"]:
+        pkgs = pkgs + ansible_vars["ansible_facts"]["uyuni_monitoring_formulas_packages"]
+    # check packages
+    for pkg in pkgs:
+        print(pkg)
+        assert host.package(pkg).is_installed
+
+
+def test_monitoring_enabled(host):
+    """
+    check if monitoring is enabled
+    """
+    # get variables from file
+    ansible_vars = host.ansible("include_vars", "file=molecule/default/vars/main.yml")
+    # check configuration
+    if ansible_vars["ansible_facts"]["uyuni_enable_monitoring"]:
+        rhn_cfg = host.file("/etc/rhn/rhn.conf")
+        assert rhn_cfg.contains("prometheus_monitoring_enabled")
+    # check status
+    # TODO: check output of mgr-monitoring-ctl status

@@ -11,6 +11,12 @@
     name: "{{ uyuni_monitoring_formulas_packages }}"
   when: uyuni_install_monitoring_formulas
 
+#- name: Enable monitoring
+#  command: mgr-monitoring-ctl enable
+#  args:
+#    creates:
+#  notify: Restart Uyuni
+
 # TODO: enable monitoring in UI?
 # POST rhn/manager/api/admin/config/monitoring
 # {enable: true}
