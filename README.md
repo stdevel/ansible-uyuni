@@ -14,7 +14,7 @@ The system needs access to the internet. Also, you will need an openSUSE Leap or
 
 | Variable | Default | Description |
 | -------- | ------- | ----------- |
-| `uyuni_suma_release` | `4.1` | SUSE Manager release to install (*4.0 or 4.1*) |
+| `uyuni_suma_release` | `4.2` | SUSE Manager release to install (*4.1 or 4.2*) |
 | `uyuni_scc_reg_code` | - | [SUSE Customer Center](https://scc.suse.com) registration code (*received after trial registration or purchase*) |
 | `uyuni_scc_mail` | - | SUSE Customer Center mail address |
 | `uyuni_scc_check_registration` | `true` | Register system if unregistered |

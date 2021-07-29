@@ -6,7 +6,7 @@
     - name: Remove package manager locks (required for Vagrantbox)
       command: zypper rl "{{ item }}"
       register: zypper_out
-      changed_when: "'removed' in zypper_out.stdout"
+      changed_when: "'successfully removed' in zypper_out.stdout"
       loop:
         - snapper
         - snapper-zypp-plugin
