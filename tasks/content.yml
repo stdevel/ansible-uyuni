@@ -12,6 +12,9 @@
       file:
         path: "{{ uyuni_cefs_path }}"
         state: directory
+        owner: root
+        group: root
+        mode: 0755
     - name: Download errata-import
       get_url:
         url: https://github.com/stevemeier/cefs/raw/master/errata-import.pl
