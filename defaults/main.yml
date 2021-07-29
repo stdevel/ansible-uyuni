@@ -9,7 +9,7 @@ uyuni_repo: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni
 uyuni_packages:
   - spacewalk-utils
   - spacecmd
-uyuni_suma_release: 4.1
+uyuni_suma_release: 4.2
 uyuni_scc_check_registration: true
 uyuni_scc_check_modules: true
 # The 'Desktop Applications' and 'Development Tools'
