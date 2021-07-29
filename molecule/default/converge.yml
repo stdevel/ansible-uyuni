@@ -1,6 +1,15 @@
 ---
 - name: Converge machines
   hosts: all
+  become: true
+  pre_tasks:
+    - name: Remove package manager locks (required for Vagrantbox)
+      command: zypper rl "{{ item }}"
+      register: zypper_out
+      changed_when: "'removed' in zypper_out.stdout"
+      loop:
+        - snapper
+        - snapper-zypp-plugin
   roles:
     - role: ansible-uyuni
       uyuni_use_lvm: false
