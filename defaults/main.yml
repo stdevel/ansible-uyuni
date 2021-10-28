@@ -5,7 +5,16 @@ uyuni_core_packages:
   - lvm2
   - man
   - firewalld
-uyuni_repo: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable/images/repo/Uyuni-Server-POOL-x86_64-Media1"
+
+uyuni_gpg:
+  - https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable/images/repodata/repomd.xml.key
+  - https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable:/Patches/openSUSE_Leap_15.3/repodata/repomd.xml.key
+
+uyuni_repos:
+  - url: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable/images/repo/Uyuni-Server-POOL-x86_64-Media1"
+    name: uyuni-server-stable
+  - url: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable:/Patches/openSUSE_Leap_15.3/"
+    name: uyuni-server-patches
 uyuni_packages:
   - spacewalk-utils
   - spacecmd

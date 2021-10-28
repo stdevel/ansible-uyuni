@@ -110,7 +110,7 @@ Ensure having all available system updates installed **before** running the play
 Error when running the playbook:
 
 ```shell
-TASK [ansible-uyuni : Add Uyuni repository] ************************************
+TASK [ansible-uyuni : Add Uyuni repositories] ************************************
 An exception occurred during task execution. To see the full traceback, use -vvv. The error was: ImportError: No module named xml.dom.minidom
 ```
 

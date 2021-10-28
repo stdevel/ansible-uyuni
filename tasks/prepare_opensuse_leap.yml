@@ -1,8 +1,14 @@
 ---
-- name: Add Uyuni repository
+- name: Add GPG keys
+  rpm_key:
+    key: "{{ item }}"
+  loop: "{{ uyuni_gpg }}"
+  become: true
+
+- name: Add Uyuni repositories
   zypper_repository:
-    repo: "{{ uyuni_repo }}"
-    name: uyuni-server-stable
-    auto_import_keys: true
+    repo: "{{ item.url }}"
+    name: "{{ item.name }}"
+  loop: "{{ uyuni_repos }}"
   become: true
   when: uyuni_use_repo | bool
