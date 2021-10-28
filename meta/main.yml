@@ -2,6 +2,7 @@
 galaxy_info:
   role_name: uyuni
   author: Christian Stankowic
+  namespace: stdevel
   description: Prepares, installs and configures Uyuni or SUSE Manager
   issue_tracker_url: https://github.com/stdevel/ansible-uyuni/issues
   license: BSD
@@ -11,7 +12,7 @@ galaxy_info:
   platforms:
     - name: opensuse
       versions:
-        - 15.2
+        - 15.3
     - name: sles
       versions:
         - 15
