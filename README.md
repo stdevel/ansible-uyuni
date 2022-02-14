@@ -15,6 +15,7 @@ The system needs access to the internet. Also, you will need an openSUSE Leap or
 | Variable | Default | Description |
 | -------- | ------- | ----------- |
 | `uyuni_suma_release` | `4.2` | SUSE Manager release to install (*4.1 or 4.2*) |
+| `uyuni_release` | *empty* | Uyuni release to install (*e.g. `2022.01`*) |
 | `uyuni_scc_reg_code` | - | [SUSE Customer Center](https://scc.suse.com) registration code (*received after trial registration or purchase*) |
 | `uyuni_scc_mail` | - | SUSE Customer Center mail address |
 | `uyuni_scc_check_registration` | `true` | Register system if unregistered |
@@ -101,6 +102,17 @@ Don't forget setting SUSE-related variables when deploying SUSE Manager:
     - role: stdevel.uyuni
       uyuni_scc_reg_code: DERP1337LULZ
       uyuni_scc_mail: bla@foo.bar
+```
+
+If you plan to bootstrap older Uyuni versions, set the Uyuni release:
+
+```yaml
+---
+- hosts: retro.giertz.loc
+  remote_user: root
+  roles:
+    - role: stdevel.uyuni
+      uyuni_release: '2020.07'
 ```
 
 Ensure having all available system updates installed **before** running the playbook!

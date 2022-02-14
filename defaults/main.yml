@@ -15,6 +15,13 @@ uyuni_repos:
     name: uyuni-server-stable
   - url: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable:/Patches/openSUSE_Leap_15.3/"
     name: uyuni-server-patches
+
+uyuni_repo_gpg:
+  - "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Snapshots:/{{ uyuni_release }}/images/repodata/repomd.xml.key"
+uyuni_repo_release:
+  - url: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Snapshots:/{{ uyuni_release }}/images/"
+    name: uyuni-server-stable
+
 uyuni_packages:
   - spacewalk-utils
   - spacecmd
