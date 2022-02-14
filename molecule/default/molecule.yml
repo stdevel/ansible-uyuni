@@ -10,7 +10,6 @@ lint: |
 platforms:
   - name: opensuse-leap15
     box: generic/opensuse15
-    box_version: "3.3.2"
     cpus: 2
     memory: 4096
 provisioner:
