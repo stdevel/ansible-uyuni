@@ -20,3 +20,4 @@
       uyuni_channels:
         - {"name": "centos7", "arch": "x86_64"}
         - {"name": "centos7-updates", "arch": "x86_64"}
+      # uyuni_release: '2021.12'
