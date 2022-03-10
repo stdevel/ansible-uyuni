@@ -8,7 +8,7 @@ download_files() {
 }
 
 import_errata() {
-        SPACEWALK_USER={{ uyuni_org_login }} SPACEWALK_PASS={{ uyuni_org_password }} {{ uyuni_cefs_path }}/errata-import.pl --server localhost $1 --publish
+        SPACEWALK_USER='{{ uyuni_org_login }}' SPACEWALK_PASS='{{ uyuni_org_password }}' {{ uyuni_cefs_path }}/errata-import.pl --server localhost $1 --publish
 }
 
 if [ -z "$1" ]; then
