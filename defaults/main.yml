@@ -97,6 +97,7 @@ uyuni_defs_setup_cronjob: false
 uyuni_cefs_packages:
   - perl
   - perl-Text-Unidecode
+  - perl-XML-Simple
   - cron
 uyuni_channels: []
 # create dict items like this:
