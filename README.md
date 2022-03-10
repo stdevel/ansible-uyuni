@@ -46,10 +46,10 @@ The system needs access to the internet. Also, you will need an openSUSE Leap or
 | `uyuni_firewall_config` | `true` | Flag whether firewalld should be configured |
 | `uyuni_firewall_default_zone` | `internal` | firewalld default zone to set |
 | `uyuni_firewall_services` | `["suse-manager-server"]` | Firewall services to enable |
-| `uyuni_setup_cefs` | `false` | Flag whether errata for CentOS should be generated via [CEFS](https://cefs.steve-meier.de/) |
-| `uyuni_setup_cefs_cronjob` | `false` | Flag whether CEFS cronjob should be generated |
-| `uyuni_setup_defs` | `false` | Flag whether errata for Debian should be generated via [DEFS](https://defs.steve-meier.de/) |
-| `uyuni_setup_defs_cronjob` | `false` | Flag whether DEFS cronjob should be generated |
+| `uyuni_cefs_setup` | `false` | Flag whether errata for CentOS should be generated via [CEFS](https://cefs.steve-meier.de/) |
+| `uyuni_cefs_setup_cronjob` | `false` | Flag whether CEFS cronjob should be generated |
+| `uyuni_defs_setup` | `false` | Flag whether errata for Debian should be generated via [DEFS](https://defs.steve-meier.de/) |
+| `uyuni_defs_setup_cronjob` | `false` | Flag whether DEFS cronjob should be generated |
 | `uyuni_cefs_path` | `/opt/errata-import` | Path to install CEFS and the wrapper script to |
 | `uyuni_channels`| *empty* | Common channels to synchronize (*e.g. ``centos7`` and ``epel7``*) |
 | `uyuni_sync_channels` | `false` | Flag whether created channels should be synced |
@@ -85,10 +85,10 @@ Set variables if required, e.g.:
   remote_user: root
   roles:
     - role: stdevel.uyuni
-      uyuni_setup_cefs: true
-      uyuni_setup_cefs_cronjob: true
-      uyuni_setup_defs: true
-      uyuni_setup_defs_cronjob: true
+      uyuni_cefs_setup: true
+      uyuni_cefs_setup_cronjob: true
+      uyuni_defs_setup: true
+      uyuni_defs_setup_cronjob: true
       uyuni_channels:
         - {"name": "centos7", "arch": "x86_64"}
         - {"name": "centos7-updates", "arch": "x86_64"}
