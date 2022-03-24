@@ -3,7 +3,6 @@
   zypper:
     name: "{{ uyuni_monitoring_packages }}"
   become: true
-  when: uyuni_enable_monitoring
 
 - name: Install monitoring Salt formulas
   become: true
@@ -22,7 +21,7 @@
   command: mgr-monitoring-ctl enable
   # args:
   #   creates: /usr/lib/systemd/system/tomcat.service.d/jmx.conf
-  when: "'error' in monitoring_state.stdout|lower"
+  when: "'error' in monitoring_state.stderr|lower"
   notify: Restart Uyuni
 
 # TODO: enable monitoring in UI?

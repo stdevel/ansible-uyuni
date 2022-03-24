@@ -51,7 +51,7 @@ The system needs access to the internet. Also, you will need an openSUSE Leap 15
 | `uyuni_defs_setup` | `false` | Flag whether errata for Debian should be generated via [DEFS](https://defs.steve-meier.de/) |
 | `uyuni_defs_setup_cronjob` | `false` | Flag whether DEFS cronjob should be generated |
 | `uyuni_cefs_path` | `/opt/errata-import` | Path to install CEFS and the wrapper script to |
-| `uyuni_channels`| *empty* | Common channels to synchronize (*e.g. ``centos7`` and ``epel7``*) |
+| `uyuni_channels`| *empty* | Common channels to synchronize (*e.g. `centos7` and `epel7`*) |
 | `uyuni_sync_channels` | `false` | Flag whether created channels should be synced |
 | `uyuni_bootstrap_repos` | `false` | Flag whether Salt bootstrap repositories should be created |
 | `uyuni_enable_monitoring` | `false` | Flag whether integrated monitoring stack should be enabled |

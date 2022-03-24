@@ -19,3 +19,4 @@
 
 - include_tasks: monitoring.yml
   tags: monitoring
+  when: uyuni_enable_monitoring | bool
