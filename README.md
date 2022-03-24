@@ -8,7 +8,7 @@ This role prepares, installs and configures [Uyuni](https://uyuni-project.org) a
 
 Make sure to install the `jmespath` and `xml` Python modules.
 
-The system needs access to the internet. Also, you will need an openSUSE Leap or SUSE Linux Enterprise Server 15.1+ installation.
+The system needs access to the internet. Also, you will need an openSUSE Leap 15.3 or SUSE Linux Enterprise Server 15.2+ installation.
 
 ## Role Variables
 
@@ -51,9 +51,11 @@ The system needs access to the internet. Also, you will need an openSUSE Leap or
 | `uyuni_defs_setup` | `false` | Flag whether errata for Debian should be generated via [DEFS](https://defs.steve-meier.de/) |
 | `uyuni_defs_setup_cronjob` | `false` | Flag whether DEFS cronjob should be generated |
 | `uyuni_cefs_path` | `/opt/errata-import` | Path to install CEFS and the wrapper script to |
-| `uyuni_channels`| *empty* | Common channels to synchronize (*e.g. ``centos7`` and ``epel7``*) |
+| `uyuni_channels`| *empty* | Common channels to synchronize (*e.g. `centos7` and `epel7`*) |
 | `uyuni_sync_channels` | `false` | Flag whether created channels should be synced |
 | `uyuni_bootstrap_repos` | `false` | Flag whether Salt bootstrap repositories should be created |
+| `uyuni_enable_monitoring` | `false` | Flag whether integrated monitoring stack should be enabled |
+| `uyuni_install_monitoring_formulas` | `false` | Flag whether monitoring Salt Formulas should be installed |
 
 When supplying channels to create in `channels`, ensure passing a list with dicts like this:
 

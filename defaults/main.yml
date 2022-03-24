@@ -87,6 +87,8 @@ uyuni_firewall_config: true
 uyuni_firewall_default_zone: internal
 uyuni_firewall_services:
   - suse-manager-server
+uyuni_firewall_services_monitoring:
+  - prometheus
 
 # content settings
 uyuni_cefs_setup: false
@@ -105,3 +107,17 @@ uyuni_channels: []
 # - {"name": "centos7-updates", "arch": "x86_64"}
 uyuni_sync_channels: false
 uyuni_bootstrap_repos: false
+
+# monitoring settings
+uyuni_enable_monitoring: false
+uyuni_monitoring_packages:
+  - golang-github-prometheus-node_exporter
+  - golang-github-wrouesnel-postgres_exporter
+  - prometheus-jmx_exporter
+  - golang-github-lusitaniae-apache_exporter
+  - prometheus-jmx_exporter-tomcat
+uyuni_install_monitoring_formulas: false
+uyuni_monitoring_formulas_packages:
+  - grafana-formula
+  - prometheus-formula
+  - prometheus-exporters-formula

@@ -54,7 +54,9 @@
   command: spacewalk-common-channels -u {{ uyuni_org_login }} -p {{ uyuni_org_password }} -a {{ item.arch }} {{ item.name }}
   loop: "{{ uyuni_channels }}"
   register: create_result
-  changed_when: '"already in use" not in create_result.stderr | lower'
+  changed_when:
+    - '"exists" not in create_result.stdout | lower'
+    - '"already in use" not in create_result.stderr | lower'
   become: true
   when: uyuni_channels | length > 0
 

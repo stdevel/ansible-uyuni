@@ -20,4 +20,8 @@
       uyuni_channels:
         - {"name": "centos7", "arch": "x86_64"}
         - {"name": "centos7-updates", "arch": "x86_64"}
-      # uyuni_release: '2021.12'
+      uyuni_enable_monitoring: true
+      uyuni_install_monitoring_formulas: true
+      # Installation in 2022.02 is currently fragile
+      # see also: https://github.com/uyuni-project/uyuni/issues/5009
+      uyuni_release: '2022.01'
