@@ -11,10 +11,18 @@
     name: "{{ uyuni_monitoring_formulas_packages }}"
   when: uyuni_install_monitoring_formulas
 
+- name: Get monitoring status
+  become: true
+  command: mgr-monitoring-ctl status
+  register: monitoring_state
+  changed_when: false
+
 - name: Enable monitoring
+  become: true
   command: mgr-monitoring-ctl enable
-  args:
-    creates:
+  # args:
+  #   creates: /usr/lib/systemd/system/tomcat.service.d/jmx.conf
+  when: "'error' in monitoring_state.stdout|lower"
   notify: Restart Uyuni
 
 # TODO: enable monitoring in UI?
