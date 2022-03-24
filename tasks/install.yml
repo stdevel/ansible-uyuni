@@ -72,14 +72,15 @@
         firewall_services: "{{ uyuni_firewall_services }}"
 
     - name: Set monitoring services
-      set_fact: "{{ firewall_services + uyuni_firewall_services_monitoring }}"
-      when: uyuni_enable_monitoring
+      set_fact:
+        firewall_services: "{{ firewall_services + uyuni_firewall_services_monitoring }}"
+      when: uyuni_enable_monitoring | bool
 
     - name: Enable services
       command: "firewall-cmd --zone={{ uyuni_firewall_default_zone }} --add-service={{ item }} --permanent"
       register: set_services
       changed_when: "set_services.stdout|lower == 'success'"
-      with_items: "{{ uyuni_firewall_services }}"
+      with_items: "{{ firewall_services }}"
 
     - name: Restart firewall
       service:
