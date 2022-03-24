@@ -165,7 +165,10 @@ def test_monitoring_enabled(host):
     ansible_vars = host.ansible("include_vars", "file=molecule/default/vars/main.yml")
     # check configuration
     if ansible_vars["ansible_facts"]["uyuni_enable_monitoring"]:
-        rhn_cfg = host.file("/etc/rhn/rhn.conf")
-        assert rhn_cfg.contains("prometheus_monitoring_enabled")
+        with host.sudo():
+            rhn_cfg = host.file("/etc/rhn/rhn.conf")
+            assert rhn_cfg.contains("prometheus_monitoring_enabled")
     # check status
-    # TODO: check output of mgr-monitoring-ctl status
+    with host.sudo():
+        mon_status = host.run("mgr-monitoring-ctl status")
+        assert "error" not in mon_status.stdout.strip().lower()
