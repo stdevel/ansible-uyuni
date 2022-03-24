@@ -34,7 +34,7 @@
     url: https://localhost/rhn/newlogin/CreateFirstUser.do
     method: POST
     validate_certs: false
-    body: "submitted=true&orgName={{ uyuni_org_name }}&login={{ uyuni_org_login }}&desiredpassword={{ uyuni_org_password }}&desiredpasswordConfirm={{ uyuni_org_password }}&email={{ uyuni_org_mail }}&firstNames={{ uyuni_org_first_name }}&lastName={{ uyuni_org_last_name }}" # noqa: 204
+    body: "submitted=true&orgName={{ uyuni_org_name }}&login={{ uyuni_org_login }}&desiredpassword={{ uyuni_org_password }}&desiredpasswordConfirm={{ uyuni_org_password }}&email={{ uyuni_org_mail }}&firstNames={{ uyuni_org_first_name }}&lastName={{ uyuni_org_last_name }}"   # noqa: 204
     body_format: "form-urlencoded"
     status_code:
       - 201

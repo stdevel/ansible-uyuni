@@ -5,11 +5,27 @@ uyuni_core_packages:
   - lvm2
   - man
   - firewalld
-uyuni_repo: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable/images/repo/Uyuni-Server-POOL-x86_64-Media1"
+
+uyuni_gpg:
+  - https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable/images/repodata/repomd.xml.key
+  - https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable:/Patches/openSUSE_Leap_15.3/repodata/repomd.xml.key
+
+uyuni_repos:
+  - url: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable/images/repo/Uyuni-Server-POOL-{{ ansible_architecture }}-Media1"
+    name: uyuni-server-stable
+  - url: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable:/Patches/openSUSE_Leap_15.3/"
+    name: uyuni-server-patches
+
+uyuni_repo_gpg:
+  - "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Snapshots:/{{ uyuni_release }}/images/repodata/repomd.xml.key"
+uyuni_repo_release:
+  - url: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Snapshots:/{{ uyuni_release }}/images/"
+    name: uyuni-server-stable
+
 uyuni_packages:
   - spacewalk-utils
   - spacecmd
-uyuni_suma_release: 4.1
+uyuni_suma_release: 4.2
 uyuni_scc_check_registration: true
 uyuni_scc_check_modules: true
 # The 'Desktop Applications' and 'Development Tools'
@@ -83,6 +99,7 @@ uyuni_defs_setup_cronjob: false
 uyuni_cefs_packages:
   - perl
   - perl-Text-Unidecode
+  - perl-XML-Simple
   - cron
 uyuni_channels: []
 # create dict items like this:
