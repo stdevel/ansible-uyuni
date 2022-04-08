@@ -46,6 +46,7 @@ The system needs access to the internet. Also, you will need an openSUSE Leap 15
 | `uyuni_firewall_config` | `true` | Flag whether firewalld should be configured |
 | `uyuni_firewall_default_zone` | `internal` | firewalld default zone to set |
 | `uyuni_firewall_services` | `["suse-manager-server"]` | Firewall services to enable |
+| `uyuni_firewall_ports` | *empty* | Firewall ports to enable (*e.g. `8080/tcp`*)
 | `uyuni_cefs_setup` | `false` | Flag whether errata for CentOS should be generated via [CEFS](https://cefs.steve-meier.de/) |
 | `uyuni_cefs_setup_cronjob` | `false` | Flag whether CEFS cronjob should be generated |
 | `uyuni_defs_setup` | `false` | Flag whether errata for Debian should be generated via [DEFS](https://defs.steve-meier.de/) |
