@@ -87,8 +87,13 @@ uyuni_firewall_config: true
 uyuni_firewall_default_zone: internal
 uyuni_firewall_services:
   - suse-manager-server
-uyuni_firewall_services_monitoring:
-  - prometheus
+uyuni_firewall_ports: []
+uyuni_firewall_ports_monitoring:
+  - 5556/tcp
+  - 5557/tcp
+  - 9100/tcp
+  - 9187/tcp
+  - 9800/tcp
 
 # content settings
 uyuni_cefs_setup: false

@@ -67,20 +67,26 @@
       changed_when: "set_zone.stdout|lower == 'success'"
       register: set_zone
 
-    - name: Set services
+    - name: Set ports
       set_fact:
-        firewall_services: "{{ uyuni_firewall_services }}"
+        firewall_ports: "{{ uyuni_firewall_ports }}"
 
-    - name: Set monitoring services
+    - name: Set monitoring ports
       set_fact:
-        firewall_services: "{{ firewall_services + uyuni_firewall_services_monitoring }}"
+        firewall_ports: "{{ firewall_ports + uyuni_firewall_ports_monitoring }}"
       when: uyuni_enable_monitoring | bool
 
     - name: Enable services
       command: "firewall-cmd --zone={{ uyuni_firewall_default_zone }} --add-service={{ item }} --permanent"
       register: set_services
       changed_when: "set_services.stdout|lower == 'success'"
-      with_items: "{{ firewall_services }}"
+      with_items: "{{ uyuni_firewall_services }}"
+
+    - name: Enable ports
+      command: "firewall-cmd --zone={{ uyuni_firewall_default_zone }} --add-port={{ item }} --permanent"
+      register: set_ports
+      changed_when: "set_ports.stdout|lower == 'success'"
+      with_items: "{{ firewall_ports }}"
 
     - name: Restart firewall
       service:
