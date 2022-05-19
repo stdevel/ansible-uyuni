@@ -48,7 +48,7 @@ You might want to have a look at these sites in order to find out how to create 
 Beginning with SLE 15 SP2, SUSE ships Vagrantboxes again. To import it, use the following command:
 
 ```shell
-$ vagrant box add sles15-sp2 SLES15-SP2-Vagrant.x86_64-15.2-<provider>-GM.vagrant.<provider>.box
+$ vagrant box add sles15-sp3 SLES15-SP3-Vagrant.x86_64-15.2-<provider>-*.vagrant.<provider>.box
 ```
 
 Replace `<provider>` with `virtualbox` or `libvirt`.
