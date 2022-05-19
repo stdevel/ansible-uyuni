@@ -64,7 +64,7 @@ uyuni_filesystems:
 uyuni_mail: "root@localhost"
 uyuni_db_name: "uyuni"
 uyuni_db_user: "uyuni"
-uyuni_db_pass: "uyuni"
+uyuni_db_pass: "Uyuni1337"
 uyuni_cert_city: "Berlin"
 uyuni_cert_country: "DE"
 uyuni_cert_mail: "root@localhost"
