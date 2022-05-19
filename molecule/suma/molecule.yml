@@ -11,7 +11,7 @@ platforms:
   - name: suma4
     box: sles15-sp3
     cpus: 2
-    memory: 4096
+    memory: 8192
 provisioner:
   name: ansible
 verifier:
