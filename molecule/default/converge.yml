@@ -13,7 +13,7 @@
           lineinfile:
             path: /etc/hosts
             regexp: '^127.0.0.1'
-            line: '127.0.0.1 uyuni.vagrant.loc uyuni'
+            line: '127.0.0.1 localhost uyuni.vagrant.loc uyuni'
 
     - name: Remove package manager locks (required for Vagrantbox)
       command: zypper rl "{{ item }}"
