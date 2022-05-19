@@ -17,7 +17,7 @@ def test_lvm(host):
     # get variables from file
     ansible_vars = host.ansible(
         "include_vars",
-        "file=molecule/default/vars/main.yml"
+        "file=molecule/suma/vars/main.yml"
     )
     if ansible_vars["ansible_facts"]["uyuni_use_lvm"]:
         # check file systems
@@ -35,7 +35,7 @@ def test_packages(host):
     # get variables from file
     ansible_vars = host.ansible(
         "include_vars",
-        "file=molecule/default/vars/main.yml"
+        "file=molecule/suma/vars/main.yml"
     )
     # check dependencies and Uyuni packages
     for pkg in ansible_vars["ansible_facts"]["uyuni_core_packages"] + \
@@ -69,7 +69,7 @@ def test_firewall(host):
     # get variables from file
     ansible_vars = host.ansible(
         "include_vars",
-        "file=molecule/default/vars/main.yml"
+        "file=molecule/suma/vars/main.yml"
     )
     # check if services are enabled
     if ansible_vars["ansible_facts"]["uyuni_firewall_config"]:
@@ -86,7 +86,7 @@ def test_org(host):
     # get variables from file
     ansible_vars = host.ansible(
         "include_vars",
-        "file=molecule/default/vars/main.yml"
+        "file=molecule/suma/vars/main.yml"
     )
     # check if organization exists
     cmd_org = host.run(
@@ -104,7 +104,7 @@ def test_errata(host):
     # get variables from file
     ansible_vars = host.ansible(
         "include_vars",
-        "file=molecule/default/vars/main.yml"
+        "file=molecule/suma/vars/main.yml"
     )
     if ansible_vars["ansible_facts"]["uyuni_cefs_setup"]:
         # check package dependencies
@@ -128,7 +128,7 @@ def test_channels(host):
     # get variables from file
     ansible_vars = host.ansible(
         "include_vars",
-        "file=molecule/default/vars/main.yml"
+        "file=molecule/suma/vars/main.yml"
     )
     # get spacewalk-common-channels definitions from client
     with host.sudo():
@@ -164,7 +164,7 @@ def test_monitoring_packages(host):
     # get variables from file
     ansible_vars = host.ansible(
         "include_vars",
-        "file=molecule/default/vars/main.yml"
+        "file=molecule/suma/vars/main.yml"
     )
     # set packages
     pkgs = []
@@ -185,7 +185,7 @@ def test_monitoring_enabled(host):
     # get variables from file
     ansible_vars = host.ansible(
         "include_vars",
-        "file=molecule/default/vars/main.yml"
+        "file=molecule/suma/vars/main.yml"
     )
     # check configuration
     if ansible_vars["ansible_facts"]["uyuni_enable_monitoring"]:
