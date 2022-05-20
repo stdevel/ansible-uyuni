@@ -28,7 +28,7 @@ The system needs access to the internet. Also, you will need an openSUSE Leap 15
 | `uyuni_mail` | `root@localhost` | Web server administrator mail |
 | `uyuni_db_name` | `uyuni` | Database name |
 | `uyuni_db_user` | `uyuni` | Database user |
-| `uyuni_db_pass` | `uyuni` | Database password |
+| `uyuni_db_pass` | `Uyuni1337` | Database password |
 | `uyuni_cert_city` | `Berlin` | Certificate city |
 | `uyuni_cert_country` | `DE` | Certificate country |
 | `uyuni_cert_mail` | `root@localhost` | Certificate mail |
