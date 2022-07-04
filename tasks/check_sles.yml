@@ -10,3 +10,9 @@
   when:
     - uyuni_suma_release == 4.2
     - ansible_distribution_version != '15.3'
+
+- name: Ensure having supported SP release for SUMA 4.3
+  fail: msg="Please upgrade to SP4"
+  when:
+    - uyuni_suma_release == 4.3
+    - ansible_distribution_version != '15.4'

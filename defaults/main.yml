@@ -25,7 +25,7 @@ uyuni_repo_release:
 uyuni_packages:
   - spacewalk-utils
   - spacecmd
-uyuni_suma_release: 4.2
+uyuni_suma_release: 4.3
 uyuni_scc_check_registration: true
 uyuni_scc_check_modules: true
 # The 'Desktop Applications' and 'Development Tools'
