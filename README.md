@@ -8,14 +8,14 @@ This role prepares, installs and configures [Uyuni](https://uyuni-project.org) a
 
 Make sure to install the `jmespath` and `xml` Python modules.
 
-The system needs access to the internet. Also, you will need an openSUSE Leap 15.3 or SUSE Linux Enterprise Server 15.2+ installation.
+The system needs access to the internet. Also, you will need an openSUSE Leap 15.x or SUSE Linux Enterprise Server 15.x installation.
 
 ## Role Variables
 
 | Variable | Default | Description |
 | -------- | ------- | ----------- |
-| `uyuni_suma_release` | `4.2` | SUSE Manager release to install (*4.1 or 4.2*) |
-| `uyuni_release` | *empty* | Uyuni release to install (*e.g. `2022.01`*) |
+| `uyuni_suma_release` | `4.3` | SUSE Manager release to install (*4.1 to 4.3*) |
+| `uyuni_release` | *empty* | Uyuni release to install (*e.g. `2022.06`*) |
 | `uyuni_scc_reg_code` | - | [SUSE Customer Center](https://scc.suse.com) registration code (*received after trial registration or purchase*) |
 | `uyuni_scc_mail` | - | SUSE Customer Center mail address |
 | `uyuni_scc_check_registration` | `true` | Register system if unregistered |
