@@ -59,6 +59,10 @@ uyuni_filesystems:
     type: xfs
     mountpoint: /var/lib/pgsql
     size: 10240
+  - name: lv_cache
+    type: xfs
+    mountpoint: /var/cache/rhn
+    size: 10240
 
 # Uyuni configuration
 uyuni_mail: "root@localhost"

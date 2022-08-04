@@ -24,7 +24,7 @@ The system needs access to the internet. Also, you will need an openSUSE Leap 15
 | `uyuni_use_lvm` | `true` | Use LVM to create application volumes |
 | `uyuni_vg` | `uyuni` | LVM volume group to create for Docker data |
 | `uyuni_pv` | `/dev/sdb` | Disk to use for LVM |
-| `uyuni_filesystems` | see [defaults/main.yml](defaults) | LVs, filesystems and mount points to create |
+| `uyuni_filesystems` | see [defaults/main.yml](defaults/main.yml) | LVs, filesystems and mount points to create |
 | `uyuni_mail` | `root@localhost` | Web server administrator mail |
 | `uyuni_db_name` | `uyuni` | Database name |
 | `uyuni_db_user` | `uyuni` | Database user |
@@ -93,8 +93,10 @@ Set variables if required, e.g.:
       uyuni_defs_setup: true
       uyuni_defs_setup_cronjob: true
       uyuni_channels:
-        - {"name": "centos7", "arch": "x86_64"}
-        - {"name": "centos7-updates", "arch": "x86_64"}
+        - name: centos7
+          arch: x86_64
+        - name: centos7-updates
+          arch: x86_64
 ```
 
 Don't forget setting SUSE-related variables when deploying SUSE Manager:
@@ -115,7 +117,7 @@ If you plan to bootstrap older Uyuni versions, set the Uyuni release:
   remote_user: root
   roles:
     - role: stdevel.uyuni
-      uyuni_release: '2020.07'
+      uyuni_release: '2022.06'
 ```
 
 Ensure having all available system updates installed **before** running the playbook!
@@ -138,3 +140,4 @@ Apache 2.0
 ## Author Information
 
 Christian Stankowic (info@cstan.io)
+
