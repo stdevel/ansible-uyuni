@@ -7,15 +7,18 @@ galaxy_info:
   issue_tracker_url: https://github.com/stdevel/ansible-uyuni/issues
   license: BSD
 
-  min_ansible_version: 2.4
+  min_ansible_version: '2.4'
 
   platforms:
     - name: opensuse
       versions:
-        - 15.3
-    - name: sles
+        - '15.3'
+    - name: SLES
       versions:
-        - 15
+        - '15'
+        - 15SP1
+        - 15SP2
+        - 15SP3
 
   galaxy_tags:
     - systemsmanagement
