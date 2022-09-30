@@ -25,7 +25,7 @@
     - uyuni_scc_check_registration
     - 'scc_registration.stdout | from_json | json_query(query_filter) | join | lower != "registered"'
   vars:
-    - query_filter: "[?identifier == 'SUSE-Manager-Server'].status"
+    query_filter: "[?identifier == 'SUSE-Manager-Server'].status"
   become: true
 
 - name: Enable modules
@@ -35,5 +35,5 @@
     - uyuni_scc_check_modules
     - 'scc_registration.stdout | from_json | json_query(query_filter) | join | lower != "registered"'
   vars:
-    - query_filter: "[?identifier == '{{ item.name }}'].status"
+    query_filter: "[?identifier == '{{ item.name }}'].status"
   become: true
