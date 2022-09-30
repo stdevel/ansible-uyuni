@@ -9,19 +9,19 @@
 - name: Install errata-import
   block:
     - name: Create folder
-      file:
+      ansible.builtin.file:
         path: "{{ uyuni_cefs_path }}"
         state: directory
         owner: root
         group: root
         mode: 0755
     - name: Download errata-import
-      get_url:
+      ansible.builtin.get_url:
         url: https://github.com/stevemeier/cefs/raw/master/errata-import.pl
         dest: "{{ uyuni_cefs_path }}/errata-import.pl"
         mode: "0755"
     - name: Install wrapper script
-      template:
+      ansible.builtin.template:
         src: errata-import.sh.j2
         dest: "{{ uyuni_cefs_path }}/wrapper.sh"
         mode: "0755"
@@ -31,7 +31,7 @@
   when: uyuni_cefs_setup or uyuni_defs_setup
 
 - name: Install CEFS cronjob
-  cron:
+  ansible.builtin.cron:
     name: "Import CentOS errata"
     job: "{{ uyuni_cefs_path }}/wrapper.sh cefs"
     user: root
@@ -41,7 +41,7 @@
   when: uyuni_cefs_setup_cronjob | bool
 
 - name: Install DEFS cronjob
-  cron:
+  ansible.builtin.cron:
     name: "Import Debian errata"
     job: "{{ uyuni_cefs_path }}/wrapper.sh defs"
     user: root
@@ -51,7 +51,7 @@
   when: uyuni_defs_setup_cronjob | bool
 
 - name: Create software channels
-  command: spacewalk-common-channels -u {{ uyuni_org_login }} -p {{ uyuni_org_password }} -a {{ item.arch }} {{ item.name }}
+  ansible.builtin.command: spacewalk-common-channels -u {{ uyuni_org_login }} -p {{ uyuni_org_password }} -a {{ item.arch }} {{ item.name }}
   loop: "{{ uyuni_channels }}"
   register: create_result
   changed_when:
@@ -61,26 +61,26 @@
   when: uyuni_channels | length > 0
 
 - name: Get software channels
-  command: spacecmd -q -u {{ uyuni_org_login }} -p {{ uyuni_org_password }} softwarechannel_list
+  ansible.builtin.command: spacecmd -q -u {{ uyuni_org_login }} -p {{ uyuni_org_password }} softwarechannel_list
   changed_when: false
   register: software_channels
   when: uyuni_sync_channels | bool
 
 - name: Sync software channels
-  command: spacewalk-repo-sync -c {{ item }}
+  ansible.builtin.command: spacewalk-repo-sync -c {{ item }}
   loop: "{{ software_channels.stdout.split('\n')  }}"
   become: true
   when: uyuni_sync_channels | bool
 
 - name: Get bootstrap distributions
-  command: mgr-create-bootstrap-repo -l
+  ansible.builtin.command: mgr-create-bootstrap-repo -l
   changed_when: false
   register: bootstrap_distributions
   become: true
   when: uyuni_bootstrap_repos | bool
 
 - name: Create bootstrap repositories
-  command: "mgr-create-bootstrap-repo -f -c {{ item | regex_replace('^[0-9].', '') }}"
+  ansible.builtin.command: "mgr-create-bootstrap-repo -f -c {{ item | regex_replace('^[0-9].', '') }}"
   loop: "{{ bootstrap_distributions.stdout.split('\n') }}"
   become: true
   when: uyuni_bootstrap_repos | bool

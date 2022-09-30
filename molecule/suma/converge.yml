@@ -6,11 +6,11 @@
     - name: Set hostname
       block:
         - name: Set (short) hostname
-          hostname:
+          ansible.builtin.hostname:
             name: suma
 
         - name: Update /etc/hosts
-          lineinfile:
+          ansible.builtin.lineinfile:
             path: /etc/hosts
             regexp: '^127.0.0.1'
             line: '127.0.0.1 suma.vagrant.loc suma'
