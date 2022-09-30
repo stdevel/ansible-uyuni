@@ -37,8 +37,6 @@ uyuni_scc_check_modules: true
 uyuni_sles_modules:
   - name: sle-module-basesystem
     identifier: "sle-module-basesystem/{{ ansible_distribution_version }}/{{ ansible_architecture }}"
-  - name: sle-module-python2
-    identifier: "sle-module-python2/{{ ansible_distribution_version }}/{{ ansible_architecture }}"
   - name: sle-module-server-applications
     identifier: "sle-module-server-applications/{{ ansible_distribution_version }}/{{ ansible_architecture }}"
   - name: sle-module-web-scripting
