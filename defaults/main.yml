@@ -28,7 +28,7 @@ uyuni_packages:
 
 uyuni_suma_release: 4.3
 
-uyuni_scc_url: scc.suse.com
+uyuni_scc_url: https://scc.suse.com
 uyuni_scc_check_registration: true
 uyuni_scc_check_modules: true
 
