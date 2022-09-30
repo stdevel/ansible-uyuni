@@ -169,9 +169,9 @@ def test_monitoring_packages(host):
     # set packages
     pkgs = []
     if ansible_vars["ansible_facts"]["uyuni_enable_monitoring"]:
-        pkgs = pkgs + ansible_vars["ansible_facts"]["uyuni_monitoring_packages"]
+        pkgs = pkgs + ansible_vars["ansible_facts"]["uyuni_monitoring_packages"]    # noqa: E501
     if ansible_vars["ansible_facts"]["uyuni_install_monitoring_formulas"]:
-        pkgs = pkgs + ansible_vars["ansible_facts"]["uyuni_monitoring_formulas_packages"]
+        pkgs = pkgs + ansible_vars["ansible_facts"]["uyuni_monitoring_formulas_packages"]   # noqa: E501
     # check packages
     for pkg in pkgs:
         print(pkg)
