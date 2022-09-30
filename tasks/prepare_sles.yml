@@ -1,6 +1,6 @@
 ---
 - name: Check system registration
-  command: SUSEConnect --status
+  command: SUSEConnect --status --url {{ uyuni_scc_url }}
   changed_when: false
   register: scc_registration
   when: uyuni_scc_check_registration or uyuni_scc_check_modules
@@ -20,7 +20,7 @@
   become: true
 
 - name: Register system
-  command: "SUSEConnect -p SUSE-Manager-Server/{{ uyuni_suma_release }}/{{ ansible_architecture }} -r {{ uyuni_scc_reg_code }} -e {{ uyuni_scc_mail }}"
+  command: "SUSEConnect --url {{ uyuni_scc_url }} -p SUSE-Manager-Server/{{ uyuni_suma_release }}/{{ ansible_architecture }} -r {{ uyuni_scc_reg_code }} -e {{ uyuni_scc_mail }}"
   when:
     - uyuni_scc_check_registration
     - 'scc_registration.stdout | from_json | json_query(query_filter) | join | lower != "registered"'
@@ -29,7 +29,7 @@
   become: true
 
 - name: Enable modules
-  command: "SUSEConnect -p {{ item.identifier }}"
+  command: "SUSEConnect --url {{ uyuni_scc_url }} -p {{ item.identifier }}"
   loop: "{{ uyuni_sles_modules }}"
   when:
     - uyuni_scc_check_modules
