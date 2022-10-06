@@ -109,6 +109,7 @@ uyuni_cefs_packages:
   - perl
   - perl-Text-Unidecode
   - perl-XML-Simple
+  - perl-DateTime
   - cron
 uyuni_channels: []
 # create dict items like this:
