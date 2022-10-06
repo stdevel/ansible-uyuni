@@ -32,3 +32,11 @@
   when:
     - uyuni_use_repo | bool
     - uyuni_release is undefined
+
+- name: Add Perl repositories (openSUSE Leap 15.4)
+  community.genereal.zypper_repository:
+    repo: https://download.opensuse.org/repositories/devel:languages:perl/15.4/devel:languages:perl.repo
+  when:
+    - uyuni_cefs_setup or uyuni_defs_setup
+    - "ansible_distribution_version == '15.4'"
+  become: true

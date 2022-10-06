@@ -140,4 +140,3 @@ Apache 2.0
 ## Author Information
 
 Christian Stankowic (info@cstan.io)
-
