@@ -1,20 +1,20 @@
 ---
 - name: Add release GPG keys
-  rpm_key:
+  ansible.builtin.rpm_key:
     key: "{{ item }}"
   loop: "{{ uyuni_repo_gpg }}"
   become: true
   when: uyuni_release is defined
 
 - name: Add latest GPG keys
-  rpm_key:
+  ansible.builtin.rpm_key:
     key: "{{ item }}"
   loop: "{{ uyuni_gpg }}"
   become: true
   when: uyuni_release is undefined
 
 - name: Add release Uyuni repositories
-  zypper_repository:
+  community.general.zypper_repository:
     repo: "{{ item.url }}"
     name: "{{ item.name }}"
   loop: "{{ uyuni_repo_release }}"
@@ -24,7 +24,7 @@
     - uyuni_release is defined
 
 - name: Add latest Uyuni repositories
-  zypper_repository:
+  community.general.zypper_repository:
     repo: "{{ item.url }}"
     name: "{{ item.name }}"
   loop: "{{ uyuni_repos }}"
