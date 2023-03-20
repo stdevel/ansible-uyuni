@@ -15,7 +15,7 @@ The system needs access to the internet. Also, you will need an openSUSE Leap 15
 | Variable | Default | Description |
 | -------- | ------- | ----------- |
 | `uyuni_suma_release` | `4.3` | SUSE Manager release to install (*4.1 to 4.3*) |
-| `uyuni_release` | *empty* | Uyuni release to install (*e.g. `2022.06`*) |
+| `uyuni_release` | *empty* | Uyuni release to install (*e.g. `2023.03`*) |
 | `uyuni_scc_reg_code` | - | [SUSE Customer Center](https://scc.suse.com) registration code (*received after trial registration or purchase*) |
 | `uyuni_scc_mail` | - | SUSE Customer Center mail address |
 | `uyuni_scc_check_registration` | `true` | Register system if unregistered |
@@ -113,7 +113,7 @@ If you plan to bootstrap older Uyuni versions, set the Uyuni release:
   remote_user: root
   roles:
     - role: stdevel.uyuni
-      uyuni_release: '2022.06'
+      uyuni_release: '2023.03'
 ```
 
 Ensure having all available system updates installed **before** running the playbook!
