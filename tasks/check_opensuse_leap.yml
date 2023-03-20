@@ -10,6 +10,7 @@
   ansible.builtin.fail:
     msg: "Please ensure having SP3"
   when:
+    - uyuni_release is defined
     - "ansible_distribution_version != '15.3'"
     - "uyuni_release is version('2021.06', '>=')"
     - "uyuni_release is version('2022.06', '<')"
@@ -18,6 +19,7 @@
   ansible.builtin.fail:
     msg: "Please ensure having SP2"
   when:
+    - uyuni_release is defined
     - "ansible_distribution_version != '15.2'"
     - "uyuni_release is version('2020.07', '>=')"
     - "uyuni_release is version('2021.06', '<')"
