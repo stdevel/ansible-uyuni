@@ -12,9 +12,9 @@ import_errata() {
 }
 
 if [ -z "$1" ]; then
-        echo "Missing parameter: [cefs|defs]"
+        echo "Missing parameter: [cefs]"
         echo ""
-        echo "USAGE: ./errata-import.sh [cefs|defs]"
+        echo "USAGE: ./errata-import.sh [cefs]"
 else
         cd /tmp
 
@@ -39,13 +39,5 @@ else
                         echo "ERROR: md5 checksum mismatch, check download!"
                         exit 1
                 fi
-        elif [ "$1" == "defs" ]; then
-                # Debian errata
-
-                # get errata file
-                download_files "http://oserrata.atix.de/debian/xml_export/latest"
-
-                # import errata
-                import_errata "--errata latest --rhsa-oval=/tmp/com.redhat.rhsa-all.xml"
         fi
 fi

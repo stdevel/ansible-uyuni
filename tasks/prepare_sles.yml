@@ -7,6 +7,7 @@
   become: true
 
 - name: Prepare JeOS
+  become: true
   block:
     - name: Remove SLES release
       ansible.builtin.command: 'rpm -e --nodeps sles-release'
@@ -17,7 +18,6 @@
         path: /etc/zypp/zypp.conf
         regexp: '^solver.onlyRequires'
         line: 'solver.onlyRequires = false'
-  become: true
 
 - name: Register system
   ansible.builtin.command: "SUSEConnect -p SUSE-Manager-Server/{{ uyuni_suma_release }}/{{ ansible_architecture }} -r {{ uyuni_scc_reg_code }} -e {{ uyuni_scc_mail }}"

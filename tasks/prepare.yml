@@ -1,6 +1,6 @@
 ---
 - name: Install core utilities
-  ansible.builtin.zypper:
+  community.general.zypper:
     name: "{{ uyuni_core_packages }}"
     state: present
   become: true
@@ -13,6 +13,8 @@
   when: uyuni_use_lvm | bool
 
 - name: Create logical volumes, file systems and mount points
+  become: true
+  when: uyuni_use_lvm | bool
   block:
     - name: Create logical volumes
       community.general.lvol:
@@ -33,5 +35,3 @@
         opts: auto
         state: mounted
       with_items: "{{ uyuni_filesystems }}"
-  become: true
-  when: uyuni_use_lvm | bool

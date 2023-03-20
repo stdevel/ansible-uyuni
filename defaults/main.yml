@@ -8,12 +8,12 @@ uyuni_core_packages:
 
 uyuni_gpg:
   - https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable/images/repodata/repomd.xml.key
-  - https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable:/Patches/openSUSE_Leap_15.3/repodata/repomd.xml.key
+  - "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable:/Patches/openSUSE_Leap_{{ ansible_distribution_version }}/repodata/repomd.xml.key"
 
 uyuni_repos:
   - url: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable/images/repo/Uyuni-Server-POOL-{{ ansible_architecture }}-Media1"
     name: uyuni-server-stable
-  - url: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable:/Patches/openSUSE_Leap_15.3/"
+  - url: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable:/Patches/openSUSE_Leap_{{ ansible_distribution_version }}/"
     name: uyuni-server-patches
 
 uyuni_repo_gpg:
@@ -22,7 +22,7 @@ uyuni_repo_gpg:
 uyuni_repo_release:
   - url: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Snapshots:/{{ uyuni_release }}/images/"
     name: uyuni-server-stable
-  - url: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable:/Patches/openSUSE_Leap_15.3/"
+  - url: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable:/Patches/openSUSE_Leap_{{ ansible_distribution_version }}/"
     name: uyuni-server-patches
 
 uyuni_packages:
@@ -32,7 +32,7 @@ uyuni_suma_release: 4.3
 uyuni_scc_check_registration: true
 uyuni_scc_check_modules: true
 # The 'Desktop Applications' and 'Development Tools'
-# modules are required for CEFS/DEFS!
+# modules are required for CEFS!
 uyuni_sles_modules:
   - name: sle-module-basesystem
     identifier: "sle-module-basesystem/{{ ansible_distribution_version }}/{{ ansible_architecture }}"
@@ -72,12 +72,12 @@ uyuni_mail: "root@localhost"
 uyuni_db_name: "uyuni"
 uyuni_db_user: "uyuni"
 uyuni_db_pass: "Uyuni1337"
-uyuni_cert_city: "Berlin"
+uyuni_cert_city: "Darmstadt"
 uyuni_cert_country: "DE"
 uyuni_cert_mail: "root@localhost"
-uyuni_cert_o: "Berlin"
-uyuni_cert_ou: "Berlin"
-uyuni_cert_state: "Berlin"
+uyuni_cert_o: "Darmstadt"
+uyuni_cert_ou: "Darmstadt"
+uyuni_cert_state: "Hessen"
 uyuni_cert_pass: "uyuni"
 uyuni_org_name: "Demo"
 uyuni_org_login: "admin"
@@ -106,8 +106,6 @@ uyuni_firewall_ports_monitoring:
 uyuni_cefs_setup: false
 uyuni_cefs_setup_cronjob: false
 uyuni_cefs_path: "/opt/errata-import"
-uyuni_defs_setup: false
-uyuni_defs_setup_cronjob: false
 uyuni_cefs_packages:
   - perl
   - perl-Text-Unidecode
