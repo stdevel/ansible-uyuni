@@ -6,17 +6,17 @@
     - name: Set hostname
       block:
         - name: Set (short) hostname
-          hostname:
+          ansible.builtin.hostname:
             name: uyuni
 
         - name: Update /etc/hosts
-          lineinfile:
+          ansible.builtin.lineinfile:
             path: /etc/hosts
             regexp: '^127.0.0.1'
             line: '127.0.0.1 localhost uyuni.vagrant.loc uyuni'
 
     - name: Remove package manager locks (required for Vagrantbox)
-      command: zypper rl "{{ item }}"
+      ansible.builtin.command: zypper rl "{{ item }}"
       register: zypper_out
       changed_when: "'successfully removed' in zypper_out.stdout"
       loop:
@@ -24,13 +24,13 @@
         - snapper-zypp-plugin
 
     - name: Install required packages
-      zypper:
+      ansible.builtin.zypper:
         name:
           - snapper
           - snapper-zypp-plugin
 
   roles:
-    - role: ansible-uyuni
+    - role: stdevel.uyuni
       uyuni_use_lvm: false
       uyuni_cefs_setup: true
       uyuni_cefs_setup_cronjob: true
@@ -41,5 +41,5 @@
         - {"name": "centos7-updates", "arch": "x86_64"}
       uyuni_enable_monitoring: true
       uyuni_install_monitoring_formulas: true
-      uyuni_release: '2022.06'
+      uyuni_release: '2022.10'
       uyuni_firewall_config: true

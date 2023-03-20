@@ -6,17 +6,17 @@
     - name: Set hostname
       block:
         - name: Set (short) hostname
-          hostname:
+          ansible.builtin.hostname:
             name: suma
 
         - name: Update /etc/hosts
-          lineinfile:
+          ansible.builtin.lineinfile:
             path: /etc/hosts
             regexp: '^127.0.0.1'
             line: '127.0.0.1 suma.vagrant.loc suma'
 
   roles:
-    - role: ansible-uyuni
+    - role: stdevel.uyuni
       uyuni_use_lvm: false
       uyuni_scc_reg_code: "<insert code here>"
       uyuni_scc_mail: "<insert SCC mail here>"
