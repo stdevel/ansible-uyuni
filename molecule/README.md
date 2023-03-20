@@ -45,13 +45,15 @@ You might want to have a look at these sites in order to find out how to create 
 - [https://github.com/lavabit/robox](https://github.com/lavabit/robox)
 - [https://github.com/chef/bento/tree/master/packer_templates/sles](https://github.com/chef/bento/tree/master/packer_templates/sles)
 
-Beginning with SLE 15 SP2, SUSE ships Vagrantboxes again. To import it, use the following command:
+For SLE 15 SP2 and SP3, SUSE shiped Vagrantboxes again. To import it, use the following command:
 
 ```shell
 $ vagrant box add sles15-sp3 SLES15-SP3-Vagrant.x86_64-15.2-<provider>-*.vagrant.<provider>.box
 ```
 
 Replace `<provider>` with `virtualbox` or `libvirt`.
+
+In SLE 15 SP4, Vagrantboxes were removed, again. See [the following blog post](https://cstan.io/post/2023/02/sles-15-sp4-vagrantbox/) to see how to update an existing SP3 Vagrantbox.
 
 ## Usage
 
