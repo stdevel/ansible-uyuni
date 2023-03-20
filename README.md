@@ -29,12 +29,12 @@ The system needs access to the internet. Also, you will need an openSUSE Leap 15
 | `uyuni_db_name` | `uyuni` | Database name |
 | `uyuni_db_user` | `uyuni` | Database user |
 | `uyuni_db_pass` | `Uyuni1337` | Database password |
-| `uyuni_cert_city` | `Berlin` | Certificate city |
+| `uyuni_cert_city` | `Darmstadt` | Certificate city |
 | `uyuni_cert_country` | `DE` | Certificate country |
 | `uyuni_cert_mail` | `root@localhost` | Certificate mail |
-| `uyuni_cert_o` | `Berlin` | Certificate organization |
-| `uyuni_cert_ou` | `Berlin` | Certificate organization unit |
-| `uyuni_cert_state` | `Berlin` | Certificate state |
+| `uyuni_cert_o` | `Darmstadt` | Certificate organization |
+| `uyuni_cert_ou` | `Darmstadt` | Certificate organization unit |
+| `uyuni_cert_state` | `Hessen` | Certificate state |
 | `uyuni_cert_pass` | `uyuni` | Certificate password |
 | `uyuni_org_name` | `Demo` | Organization name |
 | `uyuni_org_login` | `admin` | Organization administrator username |
