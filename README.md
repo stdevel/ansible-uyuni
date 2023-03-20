@@ -14,7 +14,7 @@ The system needs access to the internet. Also, you will need an openSUSE Leap 15
 
 | Variable | Default | Description |
 | -------- | ------- | ----------- |
-| `uyuni_suma_release` | `4.3` | SUSE Manager release to install (*4.1 to 4.3*) |
+| `uyuni_suma_release` | `4.3` | SUSE Manager release to install (*4.2 to 4.3*) |
 | `uyuni_release` | *empty* | Uyuni release to install (*e.g. `2023.03`*) |
 | `uyuni_scc_reg_code` | - | [SUSE Customer Center](https://scc.suse.com) registration code (*received after trial registration or purchase*) |
 | `uyuni_scc_mail` | - | SUSE Customer Center mail address |
@@ -58,8 +58,11 @@ The system needs access to the internet. Also, you will need an openSUSE Leap 15
 
 When supplying channels to create in `channels`, ensure passing a list with dicts like this:
 
-```json
-[{"name": "centos7", "arch": "x86_64"}, {"name": "centos7-updates", "arch": "x86_64"}]
+```yaml
+- name: centos7
+  arch: x86_64
+- name: centos7-updates
+  arch: x86_64
 ```
 
 For available channels and architectures, see the `spacewalk-common-channels.ini` installed by the `spacewalk-utils` package. There is also [an online version](https://github.com/uyuni-project/uyuni/blob/master/utils/spacewalk-common-channels.ini) on GitHub.
