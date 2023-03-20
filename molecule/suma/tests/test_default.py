@@ -99,7 +99,7 @@ def test_org(host):
 
 def test_errata(host):
     """
-    check if CEFS/DEFS are installed properly
+    check if CEFS is installed properly
     """
     # get variables from file
     ansible_vars = host.ansible(
@@ -117,8 +117,6 @@ def test_errata(host):
         # check cronjobs
         if ansible_vars["ansible_facts"]["uyuni_cefs_setup_cronjob"]:
             assert host.file("/etc/cron.d/errata-cefs").exists
-        if ansible_vars["ansible_facts"]["uyuni_defs_setup_cronjob"]:
-            assert host.file("/etc/cron.d/errata-defs").exists
 
 
 def test_channels(host):
