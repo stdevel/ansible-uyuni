@@ -1,6 +1,14 @@
 ---
 - name: Include variables
-  ansible.builtin.include_vars: "{{ ansible_distribution | regex_replace(' ', '_') | lower }}.yml"
+  ansible.builtin.include_vars: "{{ lookup('ansible.builtin.first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_distribution | regex_replace(' ', '_') | lower }}-{{ ansible_distribution_version }}.yml"
+        - "{{ ansible_distribution | regex_replace(' ', '_') | lower }}.yml"
+        - main.yml
+      paths:
+        - 'vars'
 
 - name: Include check tasks
   ansible.builtin.include_tasks: "check_{{ ansible_distribution | regex_replace(' ', '_') | lower }}.yml"
