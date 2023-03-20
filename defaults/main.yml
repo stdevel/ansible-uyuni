@@ -106,7 +106,7 @@ uyuni_bootstrap_repos: false
 uyuni_enable_monitoring: false
 uyuni_monitoring_packages:
   - golang-github-prometheus-node_exporter
-  - golang-github-wrouesnel-postgres_exporter
+  - prometheus-postgres_exporter
   - prometheus-jmx_exporter
   - golang-github-lusitaniae-apache_exporter
   - prometheus-jmx_exporter-tomcat
