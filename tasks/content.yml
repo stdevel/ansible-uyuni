@@ -1,12 +1,14 @@
 ---
 - name: Install requirements
-  ansible.builtin.zypper:
+  community.general.zypper:
     name: "{{ uyuni_cefs_packages }}"
     state: present
   become: true
   when: uyuni_cefs_setup
 
 - name: Install errata-import
+  become: true
+  when: uyuni_cefs_setup
   block:
     - name: Create folder
       ansible.builtin.file:
@@ -27,8 +29,6 @@
         mode: "0755"
         owner: root
         group: root
-  become: true
-  when: uyuni_cefs_setup
 
 - name: Install CEFS cronjob
   ansible.builtin.cron:

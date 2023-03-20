@@ -24,7 +24,7 @@
         - snapper-zypp-plugin
 
     - name: Install required packages
-      ansible.builtin.zypper:
+      community.general.zypper:
         name:
           - snapper
           - snapper-zypp-plugin

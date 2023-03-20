@@ -1,11 +1,11 @@
 ---
 - name: Install Uyuni pattern
-  ansible.builtin.zypper:
+  community.general.zypper:
     name: "{{ uyuni_pattern }}"
   become: true
 
 - name: Install tools
-  ansible.builtin.zypper:
+  community.general.zypper:
     name: "{{ uyuni_packages }}"
   become: true
 
@@ -54,6 +54,8 @@
   when: org_created.status is defined and org_created.status in [201, 302]
 
 - name: Enable and configure firewall
+  when: uyuni_firewall_config | bool
+  become: true
   block:
     - name: Enable and start firewall
       ansible.builtin.service:
@@ -93,5 +95,3 @@
         name: firewalld
         state: restarted
       when: set_zone.changed or set_services.changed
-  when: uyuni_firewall_config | bool
-  become: true
