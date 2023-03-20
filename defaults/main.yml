@@ -8,12 +8,12 @@ uyuni_core_packages:
 
 uyuni_gpg:
   - https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable/images/repodata/repomd.xml.key
-  - https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable:/Patches/openSUSE_Leap_15.3/repodata/repomd.xml.key
+  - "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable:/Patches/openSUSE_Leap_{{ ansible_distribution_version }}/repodata/repomd.xml.key"
 
 uyuni_repos:
   - url: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable/images/repo/Uyuni-Server-POOL-{{ ansible_architecture }}-Media1"
     name: uyuni-server-stable
-  - url: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable:/Patches/openSUSE_Leap_15.3/"
+  - url: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable:/Patches/openSUSE_Leap_{{ ansible_distribution_version }}/"
     name: uyuni-server-patches
 
 uyuni_repo_gpg:
@@ -22,7 +22,7 @@ uyuni_repo_gpg:
 uyuni_repo_release:
   - url: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Snapshots:/{{ uyuni_release }}/images/"
     name: uyuni-server-stable
-  - url: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable:/Patches/openSUSE_Leap_15.3/"
+  - url: "https://download.opensuse.org/repositories/systemsmanagement:/Uyuni:/Stable:/Patches/openSUSE_Leap_{{ ansible_distribution_version }}/"
     name: uyuni-server-patches
 
 uyuni_packages:
