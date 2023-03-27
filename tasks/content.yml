@@ -1,12 +1,14 @@
 ---
 - name: Install requirements
-  zypper:
+  community.general.zypper:
     name: "{{ uyuni_cefs_packages }}"
     state: present
   become: true
-  when: uyuni_cefs_setup or uyuni_defs_setup
+  when: uyuni_cefs_setup
 
 - name: Install errata-import
+  become: true
+  when: uyuni_cefs_setup
   block:
     - name: Create folder
       ansible.builtin.file:
@@ -27,8 +29,6 @@
         mode: "0755"
         owner: root
         group: root
-  become: true
-  when: uyuni_cefs_setup or uyuni_defs_setup
 
 - name: Install CEFS cronjob
   ansible.builtin.cron:
@@ -39,16 +39,6 @@
     special_time: daily
   become: true
   when: uyuni_cefs_setup_cronjob | bool
-
-- name: Install DEFS cronjob
-  ansible.builtin.cron:
-    name: "Import Debian errata"
-    job: "{{ uyuni_cefs_path }}/wrapper.sh defs"
-    user: root
-    cron_file: "errata-defs"
-    special_time: daily
-  become: true
-  when: uyuni_defs_setup_cronjob | bool
 
 - name: Create software channels
   ansible.builtin.command: spacewalk-common-channels -u {{ uyuni_org_login }} -p {{ uyuni_org_password }} -a {{ item.arch }} {{ item.name }}

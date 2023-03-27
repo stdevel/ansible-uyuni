@@ -14,10 +14,10 @@ The system needs access to the internet. Also, you will need an openSUSE Leap 15
 
 | Variable | Default | Description |
 | -------- | ------- | ----------- |
-| `uyuni_suma_release` | `4.3` | SUSE Manager release to install (*4.1 to 4.3*) |
-| `uyuni_release` | *empty* | Uyuni release to install (*e.g. `2022.06`*) |
+| `uyuni_suma_release` | `4.3` | SUSE Manager release to install (*4.2 to 4.3*) |
+| `uyuni_release` | *empty* | Uyuni release to install (*e.g. `2023.03`*) |
 | `uyuni_scc_url` | `https://scc.suse.com` | [SUSE Customer Center](https://scc.suse.com) URL to use (*may be different for some hyperscalers*) |
-| `uyuni_scc_reg_code` | - | Registration code (*received after trial registration or purchase*) |
+| `uyuni_scc_reg_code` | - | [SUSE Customer Center](https://scc.suse.com) registration code (*received after trial registration or purchase*) |
 | `uyuni_scc_mail` | - | SUSE Customer Center mail address |
 | `uyuni_scc_check_registration` | `true` | Register system if unregistered |
 | `uyuni_scc_check_modules` | `true` | Activate required modules if not already enabled |
@@ -30,12 +30,12 @@ The system needs access to the internet. Also, you will need an openSUSE Leap 15
 | `uyuni_db_name` | `uyuni` | Database name |
 | `uyuni_db_user` | `uyuni` | Database user |
 | `uyuni_db_pass` | `Uyuni1337` | Database password |
-| `uyuni_cert_city` | `Berlin` | Certificate city |
+| `uyuni_cert_city` | `Darmstadt` | Certificate city |
 | `uyuni_cert_country` | `DE` | Certificate country |
 | `uyuni_cert_mail` | `root@localhost` | Certificate mail |
-| `uyuni_cert_o` | `Berlin` | Certificate organization |
-| `uyuni_cert_ou` | `Berlin` | Certificate organization unit |
-| `uyuni_cert_state` | `Berlin` | Certificate state |
+| `uyuni_cert_o` | `Darmstadt` | Certificate organization |
+| `uyuni_cert_ou` | `Darmstadt` | Certificate organization unit |
+| `uyuni_cert_state` | `Hessen` | Certificate state |
 | `uyuni_cert_pass` | `uyuni` | Certificate password |
 | `uyuni_org_name` | `Demo` | Organization name |
 | `uyuni_org_login` | `admin` | Organization administrator username |
@@ -50,8 +50,6 @@ The system needs access to the internet. Also, you will need an openSUSE Leap 15
 | `uyuni_firewall_ports` | *empty* | Firewall ports to enable (*e.g. `8080/tcp`*)
 | `uyuni_cefs_setup` | `false` | Flag whether errata for CentOS should be generated via [CEFS](https://cefs.steve-meier.de/) |
 | `uyuni_cefs_setup_cronjob` | `false` | Flag whether CEFS cronjob should be generated |
-| `uyuni_defs_setup` | `false` | Flag whether errata for Debian should be generated via [DEFS](https://defs.steve-meier.de/) |
-| `uyuni_defs_setup_cronjob` | `false` | Flag whether DEFS cronjob should be generated |
 | `uyuni_cefs_path` | `/opt/errata-import` | Path to install CEFS and the wrapper script to |
 | `uyuni_channels`| *empty* | Common channels to synchronize (*e.g. `centos7` and `epel7`*) |
 | `uyuni_sync_channels` | `false` | Flag whether created channels should be synced |
@@ -61,8 +59,11 @@ The system needs access to the internet. Also, you will need an openSUSE Leap 15
 
 When supplying channels to create in `channels`, ensure passing a list with dicts like this:
 
-```json
-[{"name": "centos7", "arch": "x86_64"}, {"name": "centos7-updates", "arch": "x86_64"}]
+```yaml
+- name: centos7
+  arch: x86_64
+- name: centos7-updates
+  arch: x86_64
 ```
 
 For available channels and architectures, see the `spacewalk-common-channels.ini` installed by the `spacewalk-utils` package. There is also [an online version](https://github.com/uyuni-project/uyuni/blob/master/utils/spacewalk-common-channels.ini) on GitHub.
@@ -91,8 +92,6 @@ Set variables if required, e.g.:
     - role: stdevel.uyuni
       uyuni_cefs_setup: true
       uyuni_cefs_setup_cronjob: true
-      uyuni_defs_setup: true
-      uyuni_defs_setup_cronjob: true
       uyuni_channels:
         - name: centos7
           arch: x86_64
@@ -118,7 +117,7 @@ If you plan to bootstrap older Uyuni versions, set the Uyuni release:
   remote_user: root
   roles:
     - role: stdevel.uyuni
-      uyuni_release: '2022.06'
+      uyuni_release: '2023.03'
 ```
 
 Ensure having all available system updates installed **before** running the playbook!
@@ -141,4 +140,3 @@ Apache 2.0
 ## Author Information
 
 Christian Stankowic (info@cstan.io)
-
